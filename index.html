@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DAVBOT VPN PRO</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
+<style>
+
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+
+body{
+
+background:#050505;
+color:white;
+padding-bottom:90px;
+
+}
+
+
+
+/* HEADER */
+
+.header{
+
+height:70px;
+
+background:
+linear-gradient(90deg,#001b44,#008cff);
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 20px;
+
+box-shadow:0 0 20px #008cff;
+
+}
+
+
+.logo{
+
+font-size:22px;
+
+font-weight:700;
+
+color:#ffd700;
+
+}
+
+
+
+/* CONTAINER */
+
+
+.container{
+
+padding:20px;
+
+}
+
+
+
+.card{
+
+background:#101010;
+
+border-radius:20px;
+
+padding:20px;
+
+margin-bottom:20px;
+
+border:1px solid rgba(255,215,0,.2);
+
+box-shadow:0 0 15px rgba(0,140,255,.2);
+
+}
+
+
+
+/* TITLES */
+
+
+.title{
+
+font-size:18px;
+
+font-weight:600;
+
+color:#ffd700;
+
+margin-bottom:15px;
+
+}
+
+
+
+/* STATUS */
+
+
+.status-box{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+
+.status{
+
+font-size:60px;
+
+font-weight:700;
+
+color:#ffd700;
+
+}
+
+
+.state{
+
+color:#888;
+
+}
+
+
+
+/* SWITCH */
+
+
+.switch{
+
+position:relative;
+
+width:75px;
+
+height:38px;
+
+display:block;
+
+}
+
+
+
+.switch input{
+
+display:none;
+
+}
+
+
+.slider{
+
+position:absolute;
+
+inset:0;
+
+background:#333;
+
+border-radius:50px;
+
+cursor:pointer;
+
+}
+
+
+.slider:before{
+
+content:"";
+
+position:absolute;
+
+height:30px;
+
+width:30px;
+
+left:4px;
+
+top:4px;
+
+background:white;
+
+border-radius:50%;
+
+transition:.3s;
+
+}
+
+
+
+input:checked + .slider{
+
+background:#008cff;
+
+}
+
+
+
+input:checked + .slider:before{
+
+transform:translateX(37px);
+
+}
+
+
+
+/* SERVER CURRENT */
+
+
+.server-box{
+
+background:#080808;
+
+border-radius:15px;
+
+padding:15px;
+
+}
+
+
+.server-name{
+
+font-size:22px;
+
+font-weight:bold;
+
+color:#008cff;
+
+}
+
+
+
+.info{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:10px;
+
+}
+
+
+.info span{
+
+color:#ffd700;
+
+font-weight:bold;
+
+}
+
+
+
+/* DATA */
+
+
+.data{
+
+display:flex;
+
+justify-content:space-between;
+
+text-align:center;
+
+}
+
+
+
+.data div{
+
+width:33%;
+
+}
+
+
+
+.data h3{
+
+color:#008cff;
+
+font-size:14px;
+
+}
+
+
+.data p{
+
+color:#ffd700;
+
+font-size:18px;
+
+margin-top:5px;
+
+}
+
+
+
+/* SERVER TABLE */
+
+
+.server-table{
+
+width:100%;
+
+border-collapse:collapse;
+
+background:#080808;
+
+border-radius:15px;
+
+overflow:hidden;
+
+}
+
+
+
+.server-table th{
+
+padding:12px;
+
+color:#ffd700;
+
+font-size:13px;
+
+}
+
+
+
+.server-table td{
+
+padding:12px;
+
+border-top:1px solid #222;
+
+font-size:13px;
+
+}
+
+
+
+.server-table tr.active{
+
+background:#001b44;
+
+box-shadow:0 0 15px #008cff;
+
+}
+
+
+
+.select-btn{
+
+background:#008cff;
+
+color:white;
+
+border:none;
+
+padding:8px 12px;
+
+border-radius:10px;
+
+font-size:12px;
+
+}
+
+
+
+/* GRAPH */
+
+
+.graph{
+
+height:200px;
+
+background:#080808;
+
+border-radius:15px;
+
+border:1px solid #008cff;
+
+padding:10px;
+
+}
+
+
+canvas{
+
+width:100%;
+
+height:100%;
+
+}
+
+
+
+/* LOGS */
+
+
+.logs{
+
+height:220px;
+
+background:#080808;
+
+border-radius:15px;
+
+padding:15px;
+
+overflow:auto;
+
+}
+
+
+
+.log{
+
+font-size:13px;
+
+color:#ddd;
+
+margin-bottom:10px;
+
+}
+
+
+
+/* BUTTON */
+
+
+button.connect{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:linear-gradient(90deg,#008cff,#ffd700);
+
+font-weight:bold;
+
+font-size:16px;
+
+}
+
+
+
+/* BOTTOM */
+
+
+.bottom{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+height:70px;
+
+background:#0b0b0b;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+border-top:1px solid #222;
+
+}
+
+
+
+.nav{
+
+text-align:center;
+
+font-size:13px;
+
+color:#777;
+
+}
+
+
+.nav.active{
+
+color:#ffd700;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+
+<div class="logo">
+
+🤖 DAVBOT VPN
+
+</div>
+
+
+<div>
+
+⚙️
+
+</div>
+
+
+</header>
+
+
+<div class="container">
+<!-- STATUS -->
+
+<div class="card">
+
+<div class="status-box">
+
+
+<div>
+
+<div class="status" id="status">
+
+OFF
+
+</div>
+
+
+<div class="state" id="state">
+
+Disconnected
+
+</div>
+
+
+</div>
+
+
+
+<label class="switch">
+
+<input type="checkbox" id="vpnSwitch">
+
+<span class="slider"></span>
+
+</label>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- SERVEUR ACTUEL -->
+
+
+<div class="card">
+
+
+<div class="title">
+
+🌐 Serveur connecté
+
+</div>
+
+
+
+<div class="server-box">
+
+
+<div class="server-name" id="currentServer">
+
+Aucun serveur
+
+</div>
+
+
+
+<div class="info">
+
+
+<p>
+
+IP :
+
+<span id="ip">
+
+---
+
+</span>
+
+</p>
+
+
+
+<p>
+
+Ping :
+
+<span id="ping">
+
+---
+
+</span>
+
+</p>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- DATA -->
+
+
+<div class="card">
+
+
+<div class="title">
+
+📊 Utilisation Data
+
+</div>
+
+
+
+<div class="data">
+
+
+<div>
+
+<h3>
+
+Download
+
+</h3>
+
+
+<p id="download">
+
+0 MB
+
+</p>
+
+
+</div>
+
+
+
+<div>
+
+<h3>
+
+Upload
+
+</h3>
+
+
+<p id="upload">
+
+0 MB
+
+</p>
+
+
+</div>
+
+
+
+
+<div>
+
+<h3>
+
+Total
+
+</h3>
+
+
+<p id="total">
+
+0 MB
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- SERVEURS -->
+
+
+<div class="card">
+
+
+<div class="title">
+
+🌍 Serveurs DAVBOT
+
+</div>
+
+
+
+
+<table class="server-table">
+
+
+<thead>
+
+<tr>
+
+<th>
+
+Serveur
+
+</th>
+
+
+<th>
+
+Ping
+
+</th>
+
+
+<th>
+
+Choisir
+
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="serverTable">
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+
+
+
+<!-- GRAPH -->
+
+
+<div class="card">
+
+
+<div class="title">
+
+📈 Network Traffic
+
+</div>
+
+
+
+<div class="graph">
+
+
+<canvas id="chart">
+
+</canvas>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- LOGS -->
+
+
+<div class="card">
+
+
+<div class="title">
+
+📜 Logs VPN
+
+</div>
+
+
+
+<div class="logs" id="logs">
+
+
+<div class="log">
+
+[DAVBOT] VPN prêt
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- CONNECT -->
+
+
+<div class="card">
+
+
+<button class="connect" id="connectBtn">
+
+🚀 CONNECT DAVBOT VPN
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- NAVIGATION -->
+
+
+<div class="bottom">
+
+
+<div class="nav active">
+
+🏠
+
+<br>
+
+Home
+
+</div>
+
+
+<div class="nav">
+
+🌍
+
+<br>
+
+Servers
+
+</div>
+
+
+<div class="nav">
+
+📊
+
+<br>
+
+Stats
+
+</div>
+
+
+<div class="nav">
+
+⚙️
+
+<br>
+
+Settings
+
+</div>
+
+
+
+</div>
+<script>
+
+
+// ==============================
+// DAVBOT VPN SERVERS
+// ==============================
+
+
+const servers=[
+
+
+{
+name:"🇺🇸 USA Server",
+ip:"104.21.55.10",
+ping:120
+},
+
+
+{
+name:"🇨🇦 Canada Server",
+ip:"142.44.210.20",
+ping:150
+},
+
+
+{
+name:"🤖 DAVBOT Server",
+ip:"10.10.10.10",
+ping:20
+},
+
+
+{
+name:"📡 MTN Congo",
+ip:"102.88.45.30",
+ping:35
+},
+
+
+{
+name:"🟠 Orange Congo",
+ip:"41.220.80.15",
+ping:40
+},
+
+
+{
+name:"🔴 Airtel Congo",
+ip:"154.72.60.22",
+ping:45
+}
+
+
+];
+
+
+
+
+
+let selectedServer=null;
+
+let connected=false;
+
+
+let downloadMB=0;
+
+let uploadMB=0;
+
+
+let trafficTimer=null;
+
+
+
+
+
+// ELEMENTS
+
+
+const serverTable =
+document.getElementById("serverTable");
+
+
+const currentServer =
+document.getElementById("currentServer");
+
+
+const ip =
+document.getElementById("ip");
+
+
+const ping =
+document.getElementById("ping");
+
+
+const logs =
+document.getElementById("logs");
+
+
+const vpnSwitch =
+document.getElementById("vpnSwitch");
+
+
+const status =
+document.getElementById("status");
+
+
+const state =
+document.getElementById("state");
+
+
+
+
+
+// ==============================
+// CREATE SERVER TABLE
+// ==============================
+
+
+servers.forEach((server,index)=>{
+
+
+serverTable.innerHTML += `
+
+
+<tr id="server-${index}">
+
+
+<td>
+
+${server.name}
+
+<br>
+
+<small>
+
+${server.ip}
+
+</small>
+
+</td>
+
+
+
+<td>
+
+${server.ping} ms
+
+</td>
+
+
+
+<td>
+
+
+<button class="select-btn"
+onclick="selectServer(${index})">
+
+SELECT
+
+</button>
+
+
+</td>
+
+
+</tr>
+
+
+`;
+
+
+});
+
+
+
+
+
+// ==============================
+// SELECT SERVER
+// ==============================
+
+
+function selectServer(index){
+
+
+selectedServer =
+servers[index];
+
+
+
+document.querySelectorAll(
+".server-table tr"
+)
+.forEach(row=>{
+
+
+row.classList.remove(
+"active"
+);
+
+
+});
+
+
+
+document
+.getElementById(
+"server-"+index
+)
+.classList.add(
+"active"
+);
+
+
+
+currentServer.innerHTML =
+selectedServer.name;
+
+
+ip.innerHTML =
+selectedServer.ip;
+
+
+ping.innerHTML =
+selectedServer.ping+" ms";
+
+
+
+localStorage.setItem(
+
+"davbot_server",
+
+JSON.stringify(
+selectedServer
+)
+
+);
+
+
+
+addLog(
+
+"🌍 Serveur choisi : "
+
++selectedServer.name
+
+);
+
+
+}
+
+
+
+
+
+
+// ==============================
+// LOG SYSTEM
+// ==============================
+
+
+function addLog(text){
+
+
+let time =
+new Date()
+.toLocaleTimeString();
+
+
+
+logs.innerHTML +=`
+
+
+<div class="log">
+
+[${time}] ${text}
+
+</div>
+
+
+`;
+
+
+
+logs.scrollTop =
+logs.scrollHeight;
+
+
+}
+
+
+
+
+
+
+// ==============================
+// DATA FORMAT
+// ==============================
+
+
+function formatData(value){
+
+
+if(value < 1024)
+
+return value.toFixed(2)+" MB";
+
+
+
+return (
+
+value/1024
+
+)
+.toFixed(2)+" GB";
+
+
+}
+
+
+
+
+
+
+// ==============================
+// VPN SWITCH
+// ==============================
+
+
+vpnSwitch.onchange=function(){
+
+
+
+if(vpnSwitch.checked){
+
+
+
+if(!selectedServer){
+
+
+alert(
+"Choisir un serveur"
+);
+
+
+vpnSwitch.checked=false;
+
+
+return;
+
+}
+
+
+
+connected=true;
+
+
+
+status.innerHTML="ON";
+
+status.style.color="#00ff88";
+
+
+
+state.innerHTML="Connected";
+
+
+
+addLog(
+"Connexion au serveur..."
+);
+
+
+
+addLog(
+"IP : "+selectedServer.ip
+);
+
+
+
+addLog(
+"Ping : "+selectedServer.ping+" ms"
+);
+
+
+
+addLog(
+"DAVBOT VPN CONNECTED"
+);
+
+
+
+startTraffic();
+
+
+
+}
+
+
+else{
+
+
+connected=false;
+
+
+
+status.innerHTML="OFF";
+
+
+status.style.color="#ffd700";
+
+
+
+state.innerHTML="Disconnected";
+
+
+
+addLog(
+"DAVBOT VPN OFF"
+);
+
+
+
+stopTraffic();
+
+
+
+}
+
+
+
+};
+
+
+
+
+
+
+
+// ==============================
+// CONNECT BUTTON
+// ==============================
+
+
+document
+.getElementById("connectBtn")
+.onclick=function(){
+
+
+
+vpnSwitch.checked =
+!vpnSwitch.checked;
+
+
+
+vpnSwitch.dispatchEvent(
+new Event("change")
+);
+
+
+
+};
+
+
+
+
+
+
+
+// ==============================
+// DATA TRAFFIC
+// ==============================
+
+
+function startTraffic(){
+
+
+if(trafficTimer)
+return;
+
+
+
+trafficTimer=setInterval(()=>{
+
+
+
+downloadMB +=
+Math.random()*8;
+
+
+
+uploadMB +=
+Math.random()*3;
+
+
+
+document.getElementById(
+"download"
+)
+.innerHTML =
+formatData(downloadMB);
+
+
+
+document.getElementById(
+"upload"
+)
+.innerHTML =
+formatData(uploadMB);
+
+
+
+document.getElementById(
+"total"
+)
+.innerHTML =
+formatData(
+downloadMB+uploadMB
+);
+
+
+
+},1000);
+
+
+}
+
+
+
+
+
+
+function stopTraffic(){
+
+
+clearInterval(
+trafficTimer
+);
+
+
+trafficTimer=null;
+
+
+}
+
+
+
+
+
+
+// ==============================
+// LOAD LOCAL STORAGE
+// ==============================
+
+
+window.onload=function(){
+
+
+
+let save =
+localStorage.getItem(
+"davbot_server"
+);
+
+
+
+if(save){
+
+
+
+selectedServer =
+JSON.parse(save);
+
+
+
+currentServer.innerHTML =
+selectedServer.name;
+
+
+
+ip.innerHTML =
+selectedServer.ip;
+
+
+
+ping.innerHTML =
+selectedServer.ping+" ms";
+
+
+
+addLog(
+"Serveur restauré"
+);
+
+
+
+}
+
+
+
+addLog(
+"DAVBOT VPN PRO READY"
+);
+
+
+
+};
+
+
+
+
+
+
+
+// ==============================
+// GRAPH
+// ==============================
+
+
+const canvas =
+document.getElementById("chart");
+
+
+
+if(canvas){
+
+
+const ctx =
+canvas.getContext("2d");
+
+
+canvas.width=350;
+
+canvas.height=180;
+
+
+let points=[];
+
+
+
+setInterval(()=>{
+
+
+if(connected){
+
+
+
+if(points.length>40)
+
+points.shift();
+
+
+
+points.push(
+Math.random()*120+20
+);
+
+
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+
+ctx.beginPath();
+
+
+ctx.strokeStyle="#008cff";
+
+
+ctx.lineWidth=3;
+
+
+
+points.forEach((p,i)=>{
+
+
+let x =
+i*(canvas.width/40);
+
+
+let y =
+canvas.height-p;
+
+
+
+if(i===0)
+
+ctx.moveTo(x,y);
+
+else
+
+ctx.lineTo(x,y);
+
+
+
+});
+
+
+ctx.stroke();
+
+
+
+}
+
+
+
+},1000);
+
+
+
+}
+
+
+
+
+</script>
+
+
+</body>
+
+</html>
