@@ -4,1679 +4,1602 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DAVBOT VPN PRO</title>
+<title>Davbot Tunnel</title>
 
+<meta name="theme-color" content="#0b1320">
+<meta name="description" content="Davbot Tunnel - VPN sécurisé et rapide">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 
-
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
-
+    /*=========================
+ DAVBOT TUNNEL PREMIUM
+==========================*/
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Poppins,sans-serif;
+font-family:Inter,Arial,sans-serif;
 }
 
+html{
+scroll-behavior:smooth;
+}
 
 body{
 
-background:#050505;
-color:white;
-padding-bottom:90px;
+background:#07101d;
+color:#fff;
+overflow-x:hidden;
 
 }
 
+/* Background */
 
+.background{
 
-/* HEADER */
-
-.header{
-
-height:70px;
-
-background:
-linear-gradient(90deg,#001b44,#008cff);
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-padding:0 20px;
-
-box-shadow:0 0 20px #008cff;
-
-}
-
-
-.logo{
-
-font-size:22px;
-
-font-weight:700;
-
-color:#ffd700;
-
-}
-
-
-
-/* CONTAINER */
-
-
-.container{
-
-padding:20px;
-
-}
-
-
-
-.card{
-
-background:#101010;
-
-border-radius:20px;
-
-padding:20px;
-
-margin-bottom:20px;
-
-border:1px solid rgba(255,215,0,.2);
-
-box-shadow:0 0 15px rgba(0,140,255,.2);
-
-}
-
-
-
-/* TITLES */
-
-
-.title{
-
-font-size:18px;
-
-font-weight:600;
-
-color:#ffd700;
-
-margin-bottom:15px;
-
-}
-
-
-
-/* STATUS */
-
-
-.status-box{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-}
-
-
-.status{
-
-font-size:60px;
-
-font-weight:700;
-
-color:#ffd700;
-
-}
-
-
-.state{
-
-color:#888;
-
-}
-
-
-
-/* SWITCH */
-
-
-.switch{
-
-position:relative;
-
-width:75px;
-
-height:38px;
-
-display:block;
-
-}
-
-
-
-.switch input{
-
-display:none;
-
-}
-
-
-.slider{
-
-position:absolute;
-
+position:fixed;
 inset:0;
 
-background:#333;
+background:
+radial-gradient(circle at top right,#1b7cff33,transparent 40%),
+radial-gradient(circle at bottom left,#00d5ff22,transparent 40%),
+linear-gradient(180deg,#09101c,#111d33,#09101c);
 
-border-radius:50px;
-
-cursor:pointer;
+z-index:-2;
 
 }
 
-
-.slider:before{
+.background::before{
 
 content:"";
 
 position:absolute;
 
-height:30px;
+width:400px;
+height:400px;
 
-width:30px;
+background:#00d4ff;
 
-left:4px;
+filter:blur(180px);
 
-top:4px;
+opacity:.18;
 
-background:white;
+right:-150px;
 
-border-radius:50%;
+top:-100px;
+
+}
+
+/* Container */
+
+.app{
+
+max-width:430px;
+
+margin:auto;
+
+padding:20px 18px 100px;
+
+}
+
+/* HEADER */
+
+.header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:25px;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+}
+
+.logo img{
+
+width:56px;
+
+height:56px;
+
+border-radius:16px;
+
+background:#fff;
+
+padding:4px;
+
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+
+}
+
+.logo h2{
+
+font-size:23px;
+
+font-weight:700;
+
+}
+
+.logo span{
+
+display:block;
+
+font-size:12px;
+
+color:#9eb7d3;
+
+margin-top:3px;
+
+}
+
+.header-icons{
+
+display:flex;
+
+gap:15px;
+
+}
+
+.header-icons i{
+
+font-size:22px;
+
+cursor:pointer;
+
+color:#d9e8ff;
 
 transition:.3s;
 
 }
 
+.header-icons i:hover{
 
-
-input:checked + .slider{
-
-background:#008cff;
+color:#00d4ff;
 
 }
 
+/* MAIN CARD */
 
+.main-card{
 
-input:checked + .slider:before{
+background:rgba(255,255,255,.06);
 
-transform:translateX(37px);
+backdrop-filter:blur(18px);
 
-}
+border:1px solid rgba(255,255,255,.08);
 
+border-radius:28px;
 
+padding:28px;
 
-/* SERVER CURRENT */
+text-align:center;
 
-
-.server-box{
-
-background:#080808;
-
-border-radius:15px;
-
-padding:15px;
+box-shadow:0 15px 35px rgba(0,0,0,.25);
 
 }
 
+.small-title{
 
-.server-name{
+font-size:13px;
 
-font-size:22px;
-
-font-weight:bold;
-
-color:#008cff;
+color:#8ba5c3;
 
 }
 
+#status{
 
+font-size:30px;
 
-.info{
+margin:12px 0;
+
+font-weight:700;
+
+}
+
+.timer{
 
 display:flex;
 
-justify-content:space-between;
+justify-content:center;
+
+align-items:center;
+
+gap:8px;
+
+color:#00d4ff;
+
+font-size:18px;
 
 margin-top:10px;
 
 }
 
+#connectBtn{
 
-.info span{
+width:120px;
 
-color:#ffd700;
-
-font-weight:bold;
-
-}
-
-
-
-/* DATA */
-
-
-.data{
-
-display:flex;
-
-justify-content:space-between;
-
-text-align:center;
-
-}
-
-
-
-.data div{
-
-width:33%;
-
-}
-
-
-
-.data h3{
-
-color:#008cff;
-
-font-size:14px;
-
-}
-
-
-.data p{
-
-color:#ffd700;
-
-font-size:18px;
-
-margin-top:5px;
-
-}
-
-
-
-/* SERVER TABLE */
-
-
-.server-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-background:#080808;
-
-border-radius:15px;
-
-overflow:hidden;
-
-}
-
-
-
-.server-table th{
-
-padding:12px;
-
-color:#ffd700;
-
-font-size:13px;
-
-}
-
-
-
-.server-table td{
-
-padding:12px;
-
-border-top:1px solid #222;
-
-font-size:13px;
-
-}
-
-
-
-.server-table tr.active{
-
-background:#001b44;
-
-box-shadow:0 0 15px #008cff;
-
-}
-
-
-
-.select-btn{
-
-background:#008cff;
-
-color:white;
+height:120px;
 
 border:none;
 
-padding:8px 12px;
+border-radius:50%;
 
-border-radius:10px;
-
-font-size:12px;
-
-}
-
-
-
-/* GRAPH */
-
-
-.graph{
-
-height:200px;
-
-background:#080808;
-
-border-radius:15px;
-
-border:1px solid #008cff;
-
-padding:10px;
-
-}
-
-
-canvas{
-
-width:100%;
-
-height:100%;
-
-}
-
-
-
-/* LOGS */
-
-
-.logs{
-
-height:220px;
-
-background:#080808;
-
-border-radius:15px;
-
-padding:15px;
-
-overflow:auto;
-
-}
-
-
-
-.log{
-
-font-size:13px;
-
-color:#ddd;
-
-margin-bottom:10px;
-
-}
-
-
-
-/* BUTTON */
-
-
-button.connect{
-
-width:100%;
-
-padding:15px;
-
-border:none;
-
-border-radius:15px;
-
-background:linear-gradient(90deg,#008cff,#ffd700);
-
-font-weight:bold;
-
-font-size:16px;
-
-}
-
-
-
-/* BOTTOM */
-
-
-.bottom{
-
-position:fixed;
-
-bottom:0;
-
-left:0;
-
-width:100%;
-
-height:70px;
-
-background:#0b0b0b;
+margin:30px auto;
 
 display:flex;
 
-justify-content:space-around;
+justify-content:center;
 
 align-items:center;
 
-border-top:1px solid #222;
+background:linear-gradient(135deg,#00bfff,#0066ff);
+
+font-size:45px;
+
+color:white;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:
+
+0 0 30px rgba(0,191,255,.45),
+
+0 0 60px rgba(0,191,255,.15);
 
 }
 
+#connectBtn:hover{
 
+transform:scale(1.08);
 
-.nav{
+box-shadow:
 
-text-align:center;
+0 0 45px rgba(0,191,255,.8);
+
+}
+
+.tap{
 
 font-size:13px;
 
-color:#777;
+color:#9eb7d3;
+
+}
+/*=========================
+  STATS
+==========================*/
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-top:22px;
+}
+
+.card{
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:20px;
+padding:18px;
+text-align:center;
+transition:.3s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-5px);
+border-color:#00c8ff;
+box-shadow:0 10px 25px rgba(0,191,255,.2);
+}
+
+.card i{
+font-size:28px;
+color:#00c8ff;
+margin-bottom:10px;
+}
+
+.card h3{
+font-size:22px;
+margin:8px 0;
+font-weight:700;
+}
+
+.card span{
+font-size:13px;
+color:#9fb7d3;
+}
+
+/*=========================
+  SECTION
+==========================*/
+
+.section{
+margin-top:22px;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:22px;
+padding:18px;
+}
+
+.section h3{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:18px;
+margin-bottom:15px;
+}
+
+.section h3 i{
+color:#00c8ff;
+}
+
+.section select{
+width:100%;
+padding:15px;
+border:none;
+outline:none;
+background:#101d30;
+color:#fff;
+font-size:15px;
+border-radius:14px;
+cursor:pointer;
+transition:.3s;
+}
+
+.section select:hover{
+background:#162742;
+}
+
+.section select:focus{
+border:1px solid #00c8ff;
+}
+
+/*=========================
+  LOGS
+==========================*/
+
+#logBox{
+height:170px;
+overflow-y:auto;
+background:#0b1626;
+border-radius:15px;
+padding:15px;
+font-size:13px;
+line-height:1.8;
+color:#5dff87;
+border:1px solid rgba(255,255,255,.05);
+}
+
+#logBox::-webkit-scrollbar{
+width:6px;
+}
+
+#logBox::-webkit-scrollbar-thumb{
+background:#00c8ff;
+border-radius:20px;
+}
+
+/*=========================
+  INFO CARD
+==========================*/
+
+.info-card{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.info-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px;
+background:#0f1b2c;
+border-radius:14px;
+}
+
+.info-row span{
+color:#9fb7d3;
+}
+
+.info-row b{
+color:#fff;
+}
+
+/*=========================
+  ACTIONS
+==========================*/
+
+.actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-top:20px;
+}
+
+.actions button{
+padding:15px;
+border:none;
+border-radius:15px;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+background:linear-gradient(135deg,#00bfff,#006eff);
+color:#fff;
+}
+
+.actions button:hover{
+transform:scale(1.03);
+box-shadow:0 0 20px rgba(0,191,255,.35);
+}
+/*=========================
+  BOTTOM NAVIGATION
+==========================*/
+
+.bottom-nav{
+position:fixed;
+left:50%;
+bottom:0;
+transform:translateX(-50%);
+width:100%;
+max-width:430px;
+height:75px;
+background:rgba(9,18,33,.96);
+backdrop-filter:blur(20px);
+display:flex;
+justify-content:space-around;
+align-items:center;
+border-top:1px solid rgba(255,255,255,.08);
+box-shadow:0 -10px 25px rgba(0,0,0,.35);
+z-index:999;
+}
+
+.nav-item{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+transition:.3s;
+color:#8ea8c7;
+font-size:11px;
+font-weight:600;
+}
+
+.nav-item i{
+font-size:22px;
+margin-bottom:5px;
+transition:.3s;
+}
+
+.nav-item:hover{
+color:#00d4ff;
+transform:translateY(-4px);
+}
+
+.nav-item:hover i{
+color:#00d4ff;
+}
+
+.nav-item.active{
+color:#00d4ff;
+}
+
+.nav-item.active i{
+color:#00d4ff;
+text-shadow:0 0 15px rgba(0,212,255,.7);
+}
+
+/*=========================
+  BUTTON CONNECTED
+==========================*/
+
+.connected{
+background:linear-gradient(135deg,#00d26a,#00b84d)!important;
+box-shadow:
+0 0 25px rgba(0,210,106,.6),
+0 0 60px rgba(0,210,106,.2)!important;
+animation:pulse 2s infinite;
+}
+
+.disconnected{
+background:linear-gradient(135deg,#00bfff,#006eff)!important;
+}
+
+/*=========================
+  ANIMATIONS
+==========================*/
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+box-shadow:0 0 20px rgba(0,210,106,.4);
+}
+
+50%{
+transform:scale(1.08);
+box-shadow:0 0 45px rgba(0,210,106,.8);
+}
+
+100%{
+transform:scale(1);
+box-shadow:0 0 20px rgba(0,210,106,.4);
+}
 
 }
 
+@keyframes fadeIn{
 
-.nav.active{
+from{
+opacity:0;
+transform:translateY(20px);
+}
 
-color:#ffd700;
+to{
+opacity:1;
+transform:translateY(0);
+}
 
 }
 
+.main-card,
+.card,
+.section{
+animation:fadeIn .6s ease;
+}
 
+/*=========================
+  STATUS COLORS
+==========================*/
 
+.online{
+color:#00ff88!important;
+text-shadow:0 0 12px rgba(0,255,136,.5);
+}
+
+.offline{
+color:#ff5555!important;
+}
+
+/*=========================
+  RESPONSIVE
+==========================*/
+
+@media(max-width:480px){
+
+.app{
+padding:15px 15px 95px;
+}
+
+.logo h2{
+font-size:20px;
+}
+
+#connectBtn{
+width:105px;
+height:105px;
+font-size:38px;
+}
+
+.stats{
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.card{
+padding:15px;
+}
+
+.section{
+padding:16px;
+}
+
+.bottom-nav{
+height:70px;
+}
+
+.nav-item i{
+font-size:20px;
+}
+
+}
+
+/*=========================
+  FIN
+==========================*/
 </style>
-
 </head>
-
 
 <body>
 
+<div class="background"></div>
+
+<!-- HEADER -->
 
 <header class="header">
 
-
 <div class="logo">
 
-🤖 DAVBOT VPN
-
-</div>
-
+<img src="https://i.ibb.co/F4fTpSRX/file-000000000fd071f5a29e53c231d696f1.png" alt="Davbot Tunnel">
 
 <div>
 
-⚙️
+<h2>Davbot Tunnel</h2>
+
+<span>Version Premium</span>
 
 </div>
 
+</div>
+
+<div class="header-icons">
+
+<i class="fas fa-bell"></i>
+
+<i class="fas fa-user-circle"></i>
+
+</div>
 
 </header>
 
+<!-- CARTE PRINCIPALE -->
 
-<div class="container">
-<!-- STATUS -->
+<div class="main-card">
 
-<div class="card">
+<p class="small-title">
 
-<div class="status-box">
+État de la connexion
 
+</p>
 
-<div>
+<h1 id="status">
 
-<div class="status" id="status">
+Déconnecté
 
-OFF
+</h1>
 
-</div>
+<div class="timer">
 
+<i class="fa-regular fa-clock"></i>
 
-<div class="state" id="state">
+<span id="timer">
 
-Disconnected
-
-</div>
-
-
-</div>
-
-
-
-<label class="switch">
-
-<input type="checkbox" id="vpnSwitch">
-
-<span class="slider"></span>
-
-</label>
-
-
-</div>
-
-</div>
-
-
-
-
-
-<!-- SERVEUR ACTUEL -->
-
-
-<div class="card">
-
-
-<div class="title">
-
-🌐 Serveur connecté
-
-</div>
-
-
-
-<div class="server-box">
-
-
-<div class="server-name" id="currentServer">
-
-Aucun serveur
-
-</div>
-
-
-
-<div class="info">
-
-
-<p>
-
-IP :
-
-<span id="ip">
-
----
+00:00:00
 
 </span>
 
+</div>
+
+<button id="connectBtn">
+
+<i class="fas fa-power-off"></i>
+
+</button>
+
+<p class="tap">
+
+Appuyez pour vous connecter
+
 </p>
 
-
-
-<p>
-
-Ping :
-
-<span id="ping">
-
----
-
-</span>
-
-</p>
-
-
-
 </div>
 
+<!-- STATISTIQUES -->
 
-</div>
-
-
-</div>
-
-
-
-
-
-
-<!-- DATA -->
-
+<div class="stats">
 
 <div class="card">
 
+<i class="fas fa-signal"></i>
 
-<div class="title">
+<h3 id="ping">
 
-📊 Utilisation Data
-
-</div>
-
-
-
-<div class="data">
-
-
-<div>
-
-<h3>
-
-Download
+0 ms
 
 </h3>
 
-
-<p id="download">
-
-0 MB
-
-</p>
-
+<span>Ping</span>
 
 </div>
-
-
-
-<div>
-
-<h3>
-
-Upload
-
-</h3>
-
-
-<p id="upload">
-
-0 MB
-
-</p>
-
-
-</div>
-
-
-
-
-<div>
-
-<h3>
-
-Total
-
-</h3>
-
-
-<p id="total">
-
-0 MB
-
-</p>
-
-
-</div>
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- SERVEURS -->
-
 
 <div class="card">
 
+<i class="fas fa-globe"></i>
 
-<div class="title">
+<h3 id="ip">
 
-🌍 Serveurs DAVBOT
+0.0.0.0
+
+</h3>
+
+<span>Adresse IP</span>
 
 </div>
 
+<div class="card">
 
+<i class="fas fa-download"></i>
 
+<h3 id="download">
 
-<table class="server-table">
+0 KB/s
 
+</h3>
 
-<thead>
+<span>Download</span>
 
-<tr>
+</div>
 
-<th>
+<div class="card">
+
+<i class="fas fa-upload"></i>
+
+<h3 id="upload">
+
+0 KB/s
+
+</h3>
+
+<span>Upload</span>
+
+</div>
+
+</div>
+
+<!-- SERVEUR -->
+
+<div class="section">
+
+<h3>
+
+<i class="fas fa-server"></i>
 
 Serveur
 
-</th>
+</h3>
 
+<select id="server">
 
-<th>
+<option>🇺🇸 USA</option>
 
-Ping
+<option>⚡ Davbot V2Ray</option>
 
-</th>
+<option>👑 Davbot Premium</option>
 
+<option>🇫🇷 France 2</option>
 
-<th>
-
-Choisir
-
-</th>
-
-
-</tr>
-
-
-</thead>
-
-
-
-<tbody id="serverTable">
-
-
-</tbody>
-
-
-</table>
-
+</select>
 
 </div>
 
+<!-- TWEAK -->
 
+<div class="section">
 
+<h3>
 
+<i class="fas fa-bolt"></i>
 
+Tweaks
 
-<!-- GRAPH -->
+</h3>
 
+<select id="tweak">
 
-<div class="card">
+<option>Orange RDC</option>
 
+<option>Orange RDC 2</option>
 
-<div class="title">
+<option>Orange V2Ray</option>
 
-📈 Network Traffic
+<option>Orange Premium</option>
+
+<option>Airtel RDC</option>
+
+<option>Airtel V2Ray</option>
+
+<option>Airtel Premium</option>
+
+<option>Vodacom DNS</option>
+
+<option>Vodacom V2Ray</option>
+
+<option>Vodacom Premium</option>
+
+<option>Africell</option>
+
+<option>Africell V2Ray</option>
+
+<option>DNS Google</option>
+
+<option>DNS Cloudflare</option>
+
+<option>HTTP Custom</option>
+
+<option>WebSocket</option>
+
+<option>SSH Premium</option>
+
+<option>SSL/TLS</option>
+
+<option>UDP Gaming</option>
+
+<option>Gaming Fast</option>
+
+<option>Streaming HD</option>
+
+</select>
 
 </div>
-
-
-
-<div class="graph">
-
-
-<canvas id="chart">
-
-</canvas>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
 <!-- LOGS -->
 
+<div class="section">
 
-<div class="card">
+<h3>
 
+<i class="fas fa-file-lines"></i>
 
-<div class="title">
+Journal de connexion
 
-📜 Logs VPN
+</h3>
 
-</div>
+<div id="logBox">
 
-
-
-<div class="logs" id="logs">
-
-
-<div class="log">
-
-[DAVBOT] VPN prêt
+<p>Davbot Tunnel est prêt.</p>
 
 </div>
 
+</div>
+
+<!-- INFORMATIONS -->
+
+<div class="section">
+
+<h3>
+
+<i class="fas fa-circle-info"></i>
+
+Informations
+
+</h3>
+
+<div class="info-card">
+
+<div class="info-row">
+
+<span>État</span>
+
+<b id="connectionState">Déconnecté</b>
 
 </div>
 
+<div class="info-row">
+
+<span>Serveur</span>
+
+<b id="currentServer">USA</b>
 
 </div>
 
+<div class="info-row">
 
+<span>Tweak</span>
 
+<b id="currentTweak">Orange RDC</b>
 
+</div>
 
+<div class="info-row">
 
+<span>Protocole</span>
 
-<!-- CONNECT -->
+<b>V2Ray</b>
 
+</div>
 
-<div class="card">
+<div class="info-row">
 
+<span>Sécurité</span>
 
-<button class="connect" id="connectBtn">
+<b>TLS + WebSocket</b>
 
-🚀 CONNECT DAVBOT VPN
+</div>
+
+</div>
+
+</div>
+
+<!-- ACTIONS -->
+
+<div class="actions">
+
+<button id="refreshBtn">
+
+<i class="fas fa-rotate"></i>
+
+Actualiser
 
 </button>
 
+<button id="shareBtn">
+
+<i class="fas fa-share-nodes"></i>
+
+Partager
+
+</button>
 
 </div>
-
-
-
-
-
-
 
 <!-- NAVIGATION -->
 
+<nav class="bottom-nav">
 
-<div class="bottom">
+<div class="nav-item active">
 
+<i class="fas fa-house"></i>
 
-<div class="nav active">
-
-🏠
-
-<br>
-
-Home
+<span>Accueil</span>
 
 </div>
 
+<div class="nav-item">
 
-<div class="nav">
+<i class="fas fa-server"></i>
 
-🌍
-
-<br>
-
-Servers
+<span>Serveurs</span>
 
 </div>
 
+<div class="nav-item">
 
-<div class="nav">
+<i class="fas fa-bolt"></i>
 
-📊
-
-<br>
-
-Stats
+<span>Tweaks</span>
 
 </div>
 
+<div class="nav-item">
 
-<div class="nav">
+<i class="fas fa-crown"></i>
 
-⚙️
-
-<br>
-
-Settings
+<span>Premium</span>
 
 </div>
 
+<div class="nav-item">
 
+<i class="fas fa-gear"></i>
+
+<span>Réglages</span>
 
 </div>
+
+</nav>
+
 <script>
+    // =======================================
+// DAVBOT TUNNEL v1.0
+// Partie 1
+// =======================================
 
+const connectBtn = document.getElementById("connectBtn");
+const status = document.getElementById("status");
+const timer = document.getElementById("timer");
+const ping = document.getElementById("ping");
+const upload = document.getElementById("upload");
+const download = document.getElementById("download");
+const ip = document.getElementById("ip");
 
-// ==============================
-// DAVBOT VPN SERVERS
-// ==============================
+const server = document.getElementById("server");
+const tweak = document.getElementById("tweak");
 
+const logBox = document.getElementById("logBox");
 
-const servers=[
+const currentServer = document.getElementById("currentServer");
+const currentTweak = document.getElementById("currentTweak");
+const connectionState = document.getElementById("connectionState");
 
+let connected = false;
+let seconds = 0;
+let timerLoop = null;
+let statsLoop = null;
 
-{
-name:"🇺🇸 USA Server",
-ip:"104.21.55.10",
-ping:120
-},
+// =========================
+// LocalStorage
+// =========================
 
+server.value = localStorage.getItem("server") || "🇺🇸 USA";
+tweak.value = localStorage.getItem("tweak") || "Orange RDC";
 
-{
-name:"🇨🇦 Canada Server",
-ip:"142.44.210.20",
-ping:150
-},
+currentServer.textContent = server.value;
+currentTweak.textContent = tweak.value;
 
+server.addEventListener("change", () => {
 
-{
-name:"🤖 DAVBOT Server",
-ip:"10.10.10.10",
-ping:20
-},
+localStorage.setItem("server", server.value);
 
-
-{
-name:"📡 MTN Congo",
-ip:"102.88.45.30",
-ping:35
-},
-
-
-{
-name:"🟠 Orange Congo",
-ip:"41.220.80.15",
-ping:40
-},
-
-
-{
-name:"🔴 Airtel Congo",
-ip:"154.72.60.22",
-ping:45
-}
-
-
-];
-
-
-
-
-
-let selectedServer=null;
-
-let connected=false;
-
-
-let downloadMB=0;
-
-let uploadMB=0;
-
-
-let trafficTimer=null;
-
-
-
-
-
-// ELEMENTS
-
-
-const serverTable =
-document.getElementById("serverTable");
-
-
-const currentServer =
-document.getElementById("currentServer");
-
-
-const ip =
-document.getElementById("ip");
-
-
-const ping =
-document.getElementById("ping");
-
-
-const logs =
-document.getElementById("logs");
-
-
-const vpnSwitch =
-document.getElementById("vpnSwitch");
-
-
-const status =
-document.getElementById("status");
-
-
-const state =
-document.getElementById("state");
-
-
-
-
-
-// ==============================
-// CREATE SERVER TABLE
-// ==============================
-
-
-servers.forEach((server,index)=>{
-
-
-serverTable.innerHTML += `
-
-
-<tr id="server-${index}">
-
-
-<td>
-
-${server.name}
-
-<br>
-
-<small>
-
-${server.ip}
-
-</small>
-
-</td>
-
-
-
-<td>
-
-${server.ping} ms
-
-</td>
-
-
-
-<td>
-
-
-<button class="select-btn"
-onclick="selectServer(${index})">
-
-SELECT
-
-</button>
-
-
-</td>
-
-
-</tr>
-
-
-`;
-
+currentServer.textContent = server.value;
 
 });
 
+tweak.addEventListener("change", () => {
 
+localStorage.setItem("tweak", tweak.value);
 
-
-
-// ==============================
-// SELECT SERVER
-// ==============================
-
-
-function selectServer(index){
-
-
-selectedServer =
-servers[index];
-
-
-
-document.querySelectorAll(
-".server-table tr"
-)
-.forEach(row=>{
-
-
-row.classList.remove(
-"active"
-);
-
+currentTweak.textContent = tweak.value;
 
 });
 
+// =========================
+// Journal
+// =========================
 
+function log(text){
 
-document
-.getElementById(
-"server-"+index
-)
-.classList.add(
-"active"
-);
+const heure=new Date().toLocaleTimeString();
 
+logBox.innerHTML=
 
-
-currentServer.innerHTML =
-selectedServer.name;
-
-
-ip.innerHTML =
-selectedServer.ip;
-
-
-ping.innerHTML =
-selectedServer.ping+" ms";
-
-
-
-localStorage.setItem(
-
-"davbot_server",
-
-JSON.stringify(
-selectedServer
-)
-
-);
-
-
-
-addLog(
-
-"🌍 Serveur choisi : "
-
-+selectedServer.name
-
-);
-
+"<p>["+heure+"] "+text+"</p>"+logBox.innerHTML;
 
 }
 
+// =========================
+// Nombre aléatoire
+// =========================
 
+function random(min,max){
 
-
-
-
-// ==============================
-// LOG SYSTEM
-// ==============================
-
-
-function addLog(text){
-
-
-let time =
-new Date()
-.toLocaleTimeString();
-
-
-
-logs.innerHTML +=`
-
-
-<div class="log">
-
-[${time}] ${text}
-
-</div>
-
-
-`;
-
-
-
-logs.scrollTop =
-logs.scrollHeight;
-
+return Math.floor(Math.random()*(max-min+1))+min;
 
 }
 
-
-
-
-
-
-// ==============================
-// DATA FORMAT
-// ==============================
-
-
-function formatData(value){
-
-
-if(value < 1024)
-
-return value.toFixed(2)+" MB";
-
-
-
-return (
-
-value/1024
-
-)
-.toFixed(2)+" GB";
-
-
-}
-
-
-
-
-
-
-// ==============================
-// VPN SWITCH
-// ==============================
-
-
-vpnSwitch.onchange=function(){
-
-
-
-if(vpnSwitch.checked){
-
-
-
-if(!selectedServer){
-
-
-alert(
-"Choisir un serveur"
-);
-
-
-vpnSwitch.checked=false;
-
-
-return;
-
-}
-
-
-
-connected=true;
-
-
-
-status.innerHTML="ON";
-
-status.style.color="#00ff88";
-
-
-
-state.innerHTML="Connected";
-
-
-
-addLog(
-"Connexion au serveur..."
-);
-
-
-
-addLog(
-"IP : "+selectedServer.ip
-);
-
-
-
-addLog(
-"Ping : "+selectedServer.ping+" ms"
-);
-
-
-
-addLog(
-"DAVBOT VPN CONNECTED"
-);
-
-
-
-startTraffic();
-
-
-
-}
-
-
-else{
-
-
-connected=false;
-
-
-
-status.innerHTML="OFF";
-
-
-status.style.color="#ffd700";
-
-
-
-state.innerHTML="Disconnected";
-
-
-
-addLog(
-"DAVBOT VPN OFF"
-);
-
-
-
-stopTraffic();
-
-
-
-}
-
-
-
-};
-
-
-
-
-
-
-
-// ==============================
-// CONNECT BUTTON
-// ==============================
-
-
-document
-.getElementById("connectBtn")
-.onclick=function(){
-
-
-
-vpnSwitch.checked =
-!vpnSwitch.checked;
-
-
-
-vpnSwitch.dispatchEvent(
-new Event("change")
-);
-
-
-
-};
-
-
-
-
-
-
-
-// ==============================
-// DATA TRAFFIC
-// ==============================
-
-
-function startTraffic(){
-
-
-if(trafficTimer)
-return;
-
-
-
-trafficTimer=setInterval(()=>{
-
-
-
-downloadMB +=
-Math.random()*8;
-
-
-
-uploadMB +=
-Math.random()*3;
-
-
-
-document.getElementById(
-"download"
-)
-.innerHTML =
-formatData(downloadMB);
-
-
-
-document.getElementById(
-"upload"
-)
-.innerHTML =
-formatData(uploadMB);
-
-
-
-document.getElementById(
-"total"
-)
-.innerHTML =
-formatData(
-downloadMB+uploadMB
-);
-
-
-
-},1000);
-
-
-}
-
-
-
-
-
-
-function stopTraffic(){
-
-
-clearInterval(
-trafficTimer
-);
-
-
-trafficTimer=null;
-
-
-}
-
-
-
-
-
-
-// ==============================
-// LOAD LOCAL STORAGE
-// ==============================
-
+// =========================
+// Restaurer la session
+// =========================
 
 window.onload=function(){
 
+if(localStorage.getItem("connected")=="true"){
 
+connected=true;
 
-let save =
-localStorage.getItem(
-"davbot_server"
+status.innerHTML="Connecté";
+
+status.classList.add("online");
+
+connectBtn.classList.add("connected");
+
+connectionState.innerHTML="Connecté";
+
+const startTime=
+
+Number(localStorage.getItem("startTime"));
+
+seconds=Math.floor(
+
+(Date.now()-startTime)/1000
+
 );
 
+startConnection();
 
+log("Session restaurée.");
 
-if(save){
+}else{
 
-
-
-selectedServer =
-JSON.parse(save);
-
-
-
-currentServer.innerHTML =
-selectedServer.name;
-
-
-
-ip.innerHTML =
-selectedServer.ip;
-
-
-
-ping.innerHTML =
-selectedServer.ping+" ms";
-
-
-
-addLog(
-"Serveur restauré"
-);
-
-
+log("Davbot Tunnel prêt.");
 
 }
-
-
-
-addLog(
-"DAVBOT VPN PRO READY"
-);
-
-
 
 };
+// =========================
+// CONNEXION
+// =========================
 
+function startConnection(){
 
+clearInterval(timerLoop);
+clearInterval(statsLoop);
 
+// Timer
+timerLoop = setInterval(() => {
 
+seconds++;
 
+let h = String(Math.floor(seconds / 3600)).padStart(2,"0");
+let m = String(Math.floor((seconds % 3600) / 60)).padStart(2,"0");
+let s = String(seconds % 60).padStart(2,"0");
 
-
-// ==============================
-// GRAPH
-// ==============================
-
-
-const canvas =
-document.getElementById("chart");
-
-
-
-if(canvas){
-
-
-const ctx =
-canvas.getContext("2d");
-
-
-canvas.width=350;
-
-canvas.height=180;
-
-
-let points=[];
-
-
-
-setInterval(()=>{
-
-
-if(connected){
-
-
-
-if(points.length>40)
-
-points.shift();
-
-
-
-points.push(
-Math.random()*120+20
-);
-
-
-
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-
-
-ctx.beginPath();
-
-
-ctx.strokeStyle="#008cff";
-
-
-ctx.lineWidth=3;
-
-
-
-points.forEach((p,i)=>{
-
-
-let x =
-i*(canvas.width/40);
-
-
-let y =
-canvas.height-p;
-
-
-
-if(i===0)
-
-ctx.moveTo(x,y);
-
-else
-
-ctx.lineTo(x,y);
-
-
-
-});
-
-
-ctx.stroke();
-
-
-
-}
-
-
+timer.textContent = `${h}:${m}:${s}`;
 
 },1000);
 
+// Statistiques
+statsLoop = setInterval(() => {
 
+ping.textContent = random(20,80)+" ms";
+
+download.textContent =
+(random(500,9000)/100).toFixed(2)+" MB/s";
+
+upload.textContent =
+(random(200,5000)/100).toFixed(2)+" MB/s";
+
+ip.textContent =
+"10."+random(1,255)+"."+random(1,255)+"."+random(1,255);
+
+},1000);
 
 }
 
+// =========================
+// BOUTON CONNECT
+// =========================
 
+connectBtn.addEventListener("click",()=>{
 
+if(!connected){
 
+connected=true;
+
+status.innerHTML="Connecté";
+
+status.classList.remove("offline");
+status.classList.add("online");
+
+connectionState.innerHTML="Connecté";
+
+connectBtn.classList.remove("disconnected");
+connectBtn.classList.add("connected");
+
+localStorage.setItem("connected","true");
+localStorage.setItem("startTime",Date.now());
+
+log("Connexion au serveur : "+server.value);
+
+startConnection();
+
+}else{
+
+connected=false;
+
+status.innerHTML="Déconnecté";
+
+status.classList.remove("online");
+status.classList.add("offline");
+
+connectionState.innerHTML="Déconnecté";
+
+connectBtn.classList.remove("connected");
+connectBtn.classList.add("disconnected");
+
+clearInterval(timerLoop);
+clearInterval(statsLoop);
+
+seconds=0;
+
+timer.innerHTML="00:00:00";
+
+ping.innerHTML="0 ms";
+download.innerHTML="0 MB/s";
+upload.innerHTML="0 MB/s";
+ip.innerHTML="0.0.0.0";
+
+localStorage.removeItem("connected");
+localStorage.removeItem("startTime");
+
+log("Déconnexion effectuée.");
+
+}
+
+});
+// =========================
+// DAVBOT TUNNEL
+// Partie 3
+// =========================
+
+// Changement de serveur
+server.addEventListener("change", () => {
+
+currentServer.textContent = server.value;
+
+localStorage.setItem("server", server.value);
+
+log("Serveur sélectionné : " + server.value);
+
+});
+
+// Changement de tweak
+tweak.addEventListener("change", () => {
+
+currentTweak.textContent = tweak.value;
+
+localStorage.setItem("tweak", tweak.value);
+
+log("Tweak sélectionné : " + tweak.value);
+
+});
+
+// =========================
+// Actualiser
+// =========================
+
+const refreshBtn = document.getElementById("refreshBtn");
+
+if(refreshBtn){
+
+refreshBtn.addEventListener("click",()=>{
+
+if(connected){
+
+ping.textContent = random(18,70) + " ms";
+
+download.textContent =
+(random(800,9500)/100).toFixed(2)+" MB/s";
+
+upload.textContent =
+(random(400,6000)/100).toFixed(2)+" MB/s";
+
+log("Statistiques actualisées.");
+
+}else{
+
+log("Connexion requise.");
+
+}
+
+});
+
+}
+
+// =========================
+// Partager
+// =========================
+
+const shareBtn = document.getElementById("shareBtn");
+
+if(shareBtn){
+
+shareBtn.addEventListener("click",()=>{
+
+const text =
+"Je suis connecté avec Davbot Tunnel 🚀";
+
+if(navigator.share){
+
+navigator.share({
+
+title:"Davbot Tunnel",
+
+text:text
+
+});
+
+}else{
+
+navigator.clipboard.writeText(text);
+
+alert("Message copié.");
+
+}
+
+log("Partage effectué.");
+
+});
+
+}
+
+// =========================
+// Vérification réseau
+// =========================
+
+window.addEventListener("online",()=>{
+
+log("Connexion Internet disponible.");
+
+});
+
+window.addEventListener("offline",()=>{
+
+log("Connexion Internet perdue.");
+
+});
+
+// =========================
+// Heure
+// =========================
+
+setInterval(()=>{
+
+document.title = connected
+? "🟢 Davbot Tunnel"
+: "🔴 Davbot Tunnel";
+
+},1000);
+
+// =========================
+// Sauvegarde automatique
+// =========================
+
+setInterval(()=>{
+
+localStorage.setItem("server",server.value);
+
+localStorage.setItem("tweak",tweak.value);
+
+if(connected){
+
+localStorage.setItem("seconds",seconds);
+
+}
+
+},5000);
+
+// =========================
+// Chargement des secondes
+// =========================
+
+const saveSeconds = localStorage.getItem("seconds");
+
+if(saveSeconds){
+
+seconds = Number(saveSeconds);
+
+}
+// =========================
+// DAVBOT TUNNEL
+// Partie 4 (Final)
+// =========================
+
+// Toast
+function toast(message){
+
+const old=document.getElementById("toast");
+
+if(old) old.remove();
+
+const div=document.createElement("div");
+
+div.id="toast";
+
+div.innerHTML=message;
+
+document.body.appendChild(div);
+
+setTimeout(()=>{
+
+div.classList.add("show");
+
+},50);
+
+setTimeout(()=>{
+
+div.classList.remove("show");
+
+setTimeout(()=>{
+
+div.remove();
+
+},300);
+
+},2500);
+
+}
+
+// =========================
+// Historique
+// =========================
+
+function saveHistory(action){
+
+let history=
+
+JSON.parse(localStorage.getItem("history")||"[]");
+
+history.unshift({
+
+action:action,
+
+server:server.value,
+
+tweak:tweak.value,
+
+date:new Date().toLocaleString()
+
+});
+
+if(history.length>50){
+
+history.pop();
+
+}
+
+localStorage.setItem(
+
+"history",
+
+JSON.stringify(history)
+
+);
+
+}
+
+// =========================
+// Anti double clic
+// =========================
+
+let lock=false;
+
+connectBtn.addEventListener("click",()=>{
+
+if(lock) return;
+
+lock=true;
+
+setTimeout(()=>{
+
+lock=false;
+
+},1200);
+
+});
+
+// =========================
+// Notification connexion
+// =========================
+
+function notify(text){
+
+if("Notification" in window){
+
+if(Notification.permission==="granted"){
+
+new Notification(text);
+
+}else{
+
+Notification.requestPermission();
+
+}
+
+}
+
+}
+
+// =========================
+// Économie mémoire
+// =========================
+
+window.addEventListener("beforeunload",()=>{
+
+localStorage.setItem("seconds",seconds);
+
+});
+
+// =========================
+// Reconnexion automatique
+// =========================
+
+window.addEventListener("focus",()=>{
+
+if(localStorage.getItem("connected")=="true"){
+
+toast("Connexion restaurée");
+
+}
+
+});
+
+// =========================
+// Bouton connexion
+// =========================
+
+connectBtn.addEventListener("click",()=>{
+
+if(connected){
+
+toast("VPN connecté");
+
+notify("Davbot Tunnel connecté");
+
+saveHistory("Connexion");
+
+}else{
+
+toast("VPN déconnecté");
+
+notify("Davbot Tunnel déconnecté");
+
+saveHistory("Déconnexion");
+
+}
+
+});
+
+// =========================
+// Style du Toast
+// =========================
+
+const style=document.createElement("style");
+
+style.innerHTML=`
+
+#toast{
+
+position:fixed;
+
+left:50%;
+
+bottom:90px;
+
+transform:translateX(-50%);
+
+background:#0e223f;
+
+color:#fff;
+
+padding:14px 22px;
+
+border-radius:15px;
+
+font-size:14px;
+
+opacity:0;
+
+transition:.3s;
+
+z-index:99999;
+
+box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+}
+
+#toast.show{
+
+opacity:1;
+
+bottom:105px;
+
+}
+
+`;
+
+document.head.appendChild(style);
+
+// =========================
+// Démarrage
+// =========================
+
+toast("Bienvenue sur Davbot Tunnel");
+
+log("Application démarrée.");
+
+console.log("Davbot Tunnel chargé.");
 </script>
-
 
 </body>
 
