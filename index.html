@@ -1,1606 +1,1801 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1020">
+<title>NEXA AI</title>
 
-<title>Davbot Tunnel</title>
-
-<meta name="theme-color" content="#0b1320">
-<meta name="description" content="Davbot Tunnel - VPN sécurisé et rapide">
-
-<link rel="stylesheet" href="css/style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <style>
-    /*=========================
- DAVBOT TUNNEL PREMIUM
-==========================*/
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%}
+body{font-family:Arial,Helvetica,sans-serif;background:#0b1020;color:#fff;overflow:hidden}
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Inter,Arial,sans-serif;
+.app{width:100%;height:100vh;display:flex}
+
+.sidebar{
+    width:270px;height:100%;background:#080d18;
+    border-right:1px solid #20283a;
+    display:flex;flex-direction:column;padding:15px;
+    flex-shrink:0;position:relative;z-index:200
 }
 
-html{
-scroll-behavior:smooth;
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+
+.logo-icon,.welcome-icon,.ai-avatar{
+    background:linear-gradient(135deg,#7057ff,#00c9a7)
 }
 
-body{
-
-background:#07101d;
-color:#fff;
-overflow-x:hidden;
-
+.logo-icon{
+    width:42px;height:42px;border-radius:13px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;font-weight:bold
 }
 
-/* Background */
+.logo-text{font-size:21px;font-weight:bold}
 
-.background{
-
-position:fixed;
-inset:0;
-
-background:
-radial-gradient(circle at top right,#1b7cff33,transparent 40%),
-radial-gradient(circle at bottom left,#00d5ff22,transparent 40%),
-linear-gradient(180deg,#09101c,#111d33,#09101c);
-
-z-index:-2;
-
+.new-chat{
+    width:100%;padding:13px;border:1px solid #303a50;
+    border-radius:11px;background:#11182a;color:#fff;
+    cursor:pointer;font-size:14px;margin-bottom:22px;
+    transition:.2s
 }
 
-.background::before{
+.new-chat:hover{background:#182138}
 
-content:"";
-
-position:absolute;
-
-width:400px;
-height:400px;
-
-background:#00d4ff;
-
-filter:blur(180px);
-
-opacity:.18;
-
-right:-150px;
-
-top:-100px;
-
+.history-title{
+    color:#7f899d;font-size:11px;text-transform:uppercase;margin:5px
 }
 
-/* Container */
+.history{flex:1;overflow-y:auto;min-height:0}
 
-.app{
-
-max-width:430px;
-
-margin:auto;
-
-padding:20px 18px 100px;
-
+.history-item{
+    padding:11px;border-radius:9px;color:#cbd2df;
+    cursor:pointer;margin-bottom:4px;white-space:nowrap;
+    overflow:hidden;text-overflow:ellipsis;transition:.2s
 }
 
-/* HEADER */
+.history-item:hover{background:#151e31}
+
+.account{
+    border-top:1px solid #20283a;padding-top:12px;
+    display:flex;align-items:center;gap:10px
+}
+
+.account-avatar{
+    width:37px;height:37px;border-radius:50%;
+    background:#27324a;display:flex;align-items:center;
+    justify-content:center
+}
+
+.account-name{font-size:13px;font-weight:bold}
+.account-status{font-size:11px;color:#7d889d;margin-top:3px}
+
+.main{
+    flex:1;min-width:0;height:100%;
+    display:flex;flex-direction:column
+}
 
 .header{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin-bottom:25px;
-
+    height:64px;flex-shrink:0;border-bottom:1px solid #20283a;
+    display:flex;align-items:center;padding:0 18px
 }
 
-.logo{
+.header-left{display:flex;align-items:center;gap:10px}
 
-display:flex;
-
-align-items:center;
-
-gap:14px;
-
+.mobile-menu{
+    display:none;border:0;background:transparent;color:#fff;
+    font-size:23px;cursor:pointer;width:40px;height:40px;
+    border-radius:10px
 }
 
-.logo img{
+.mobile-menu:hover{background:#151e31}
 
-width:56px;
-
-height:56px;
-
-border-radius:16px;
-
-background:#fff;
-
-padding:4px;
-
-box-shadow:0 5px 20px rgba(0,0,0,.3);
-
-}
-
-.logo h2{
-
-font-size:23px;
-
-font-weight:700;
-
-}
-
-.logo span{
-
-display:block;
-
-font-size:12px;
-
-color:#9eb7d3;
-
-margin-top:3px;
-
-}
-
-.header-icons{
-
-display:flex;
-
-gap:15px;
-
-}
-
-.header-icons i{
-
-font-size:22px;
-
-cursor:pointer;
-
-color:#d9e8ff;
-
-transition:.3s;
-
-}
-
-.header-icons i:hover{
-
-color:#00d4ff;
-
-}
-
-/* MAIN CARD */
-
-.main-card{
-
-background:rgba(255,255,255,.06);
-
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,.08);
-
-border-radius:28px;
-
-padding:28px;
-
-text-align:center;
-
-box-shadow:0 15px 35px rgba(0,0,0,.25);
-
-}
-
-.small-title{
-
-font-size:13px;
-
-color:#8ba5c3;
-
-}
-
-#status{
-
-font-size:30px;
-
-margin:12px 0;
-
-font-weight:700;
-
-}
-
-.timer{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-gap:8px;
-
-color:#00d4ff;
-
-font-size:18px;
-
-margin-top:10px;
-
-}
-
-#connectBtn{
-
-width:120px;
-
-height:120px;
-
-border:none;
-
-border-radius:50%;
-
-margin:30px auto;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-background:linear-gradient(135deg,#00bfff,#0066ff);
-
-font-size:45px;
-
-color:white;
-
-cursor:pointer;
-
-transition:.35s;
-
-box-shadow:
-
-0 0 30px rgba(0,191,255,.45),
-
-0 0 60px rgba(0,191,255,.15);
-
-}
-
-#connectBtn:hover{
-
-transform:scale(1.08);
-
-box-shadow:
-
-0 0 45px rgba(0,191,255,.8);
-
-}
-
-.tap{
-
-font-size:13px;
-
-color:#9eb7d3;
-
-}
-/*=========================
-  STATS
-==========================*/
-
-.stats{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-margin-top:22px;
-}
-
-.card{
-background:rgba(255,255,255,.06);
-backdrop-filter:blur(14px);
-border:1px solid rgba(255,255,255,.08);
-border-radius:20px;
-padding:18px;
-text-align:center;
-transition:.3s;
-cursor:pointer;
-}
-
-.card:hover{
-transform:translateY(-5px);
-border-color:#00c8ff;
-box-shadow:0 10px 25px rgba(0,191,255,.2);
-}
-
-.card i{
-font-size:28px;
-color:#00c8ff;
-margin-bottom:10px;
-}
-
-.card h3{
-font-size:22px;
-margin:8px 0;
-font-weight:700;
-}
-
-.card span{
-font-size:13px;
-color:#9fb7d3;
-}
-
-/*=========================
-  SECTION
-==========================*/
-
-.section{
-margin-top:22px;
-background:rgba(255,255,255,.06);
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,.08);
-border-radius:22px;
-padding:18px;
-}
-
-.section h3{
-display:flex;
-align-items:center;
-gap:10px;
-font-size:18px;
-margin-bottom:15px;
-}
-
-.section h3 i{
-color:#00c8ff;
-}
-
-.section select{
-width:100%;
-padding:15px;
-border:none;
-outline:none;
-background:#101d30;
-color:#fff;
-font-size:15px;
-border-radius:14px;
-cursor:pointer;
-transition:.3s;
-}
-
-.section select:hover{
-background:#162742;
-}
-
-.section select:focus{
-border:1px solid #00c8ff;
-}
-
-/*=========================
-  LOGS
-==========================*/
-
-#logBox{
-height:170px;
-overflow-y:auto;
-background:#0b1626;
-border-radius:15px;
-padding:15px;
-font-size:13px;
-line-height:1.8;
-color:#5dff87;
-border:1px solid rgba(255,255,255,.05);
-}
-
-#logBox::-webkit-scrollbar{
-width:6px;
-}
-
-#logBox::-webkit-scrollbar-thumb{
-background:#00c8ff;
-border-radius:20px;
-}
-
-/*=========================
-  INFO CARD
-==========================*/
-
-.info-card{
-display:flex;
-flex-direction:column;
-gap:12px;
-}
-
-.info-row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:14px;
-background:#0f1b2c;
-border-radius:14px;
-}
-
-.info-row span{
-color:#9fb7d3;
-}
-
-.info-row b{
-color:#fff;
-}
-
-/*=========================
-  ACTIONS
-==========================*/
-
-.actions{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-top:20px;
-}
-
-.actions button{
-padding:15px;
-border:none;
-border-radius:15px;
-font-size:15px;
-font-weight:600;
-cursor:pointer;
-transition:.3s;
-background:linear-gradient(135deg,#00bfff,#006eff);
-color:#fff;
-}
-
-.actions button:hover{
-transform:scale(1.03);
-box-shadow:0 0 20px rgba(0,191,255,.35);
-}
-/*=========================
-  BOTTOM NAVIGATION
-==========================*/
-
-.bottom-nav{
-position:fixed;
-left:50%;
-bottom:0;
-transform:translateX(-50%);
-width:100%;
-max-width:430px;
-height:75px;
-background:rgba(9,18,33,.96);
-backdrop-filter:blur(20px);
-display:flex;
-justify-content:space-around;
-align-items:center;
-border-top:1px solid rgba(255,255,255,.08);
-box-shadow:0 -10px 25px rgba(0,0,0,.35);
-z-index:999;
-}
-
-.nav-item{
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-transition:.3s;
-color:#8ea8c7;
-font-size:11px;
-font-weight:600;
-}
-
-.nav-item i{
-font-size:22px;
-margin-bottom:5px;
-transition:.3s;
-}
-
-.nav-item:hover{
-color:#00d4ff;
-transform:translateY(-4px);
-}
-
-.nav-item:hover i{
-color:#00d4ff;
-}
-
-.nav-item.active{
-color:#00d4ff;
-}
-
-.nav-item.active i{
-color:#00d4ff;
-text-shadow:0 0 15px rgba(0,212,255,.7);
-}
-
-/*=========================
-  BUTTON CONNECTED
-==========================*/
-
-.connected{
-background:linear-gradient(135deg,#00d26a,#00b84d)!important;
-box-shadow:
-0 0 25px rgba(0,210,106,.6),
-0 0 60px rgba(0,210,106,.2)!important;
-animation:pulse 2s infinite;
-}
-
-.disconnected{
-background:linear-gradient(135deg,#00bfff,#006eff)!important;
-}
-
-/*=========================
-  ANIMATIONS
-==========================*/
-
-@keyframes pulse{
-
-0%{
-transform:scale(1);
-box-shadow:0 0 20px rgba(0,210,106,.4);
-}
-
-50%{
-transform:scale(1.08);
-box-shadow:0 0 45px rgba(0,210,106,.8);
-}
-
-100%{
-transform:scale(1);
-box-shadow:0 0 20px rgba(0,210,106,.4);
-}
-
-}
-
-@keyframes fadeIn{
-
-from{
-opacity:0;
-transform:translateY(20px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-.main-card,
-.card,
-.section{
-animation:fadeIn .6s ease;
-}
-
-/*=========================
-  STATUS COLORS
-==========================*/
+.ai-name{display:flex;align-items:center;gap:8px;font-weight:bold}
 
 .online{
-color:#00ff88!important;
-text-shadow:0 0 12px rgba(0,255,136,.5);
+    width:8px;height:8px;border-radius:50%;
+    background:#00d084;box-shadow:0 0 8px #00d084
 }
 
-.offline{
-color:#ff5555!important;
+.chat{
+    flex:1;overflow-y:auto;padding:20px 15px 150px;
+    scroll-behavior:smooth
 }
 
-/*=========================
-  RESPONSIVE
-==========================*/
+.chat-container{width:100%;max-width:850px;margin:auto}
 
-@media(max-width:480px){
-
-.app{
-padding:15px 15px 95px;
+.welcome{
+    min-height:60vh;display:flex;flex-direction:column;
+    justify-content:center;align-items:center;text-align:center;
+    padding:20px
 }
 
-.logo h2{
-font-size:20px;
+.welcome-icon{
+    width:72px;height:72px;border-radius:22px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:27px;font-weight:bold;margin-bottom:18px;
+    box-shadow:0 10px 35px rgba(112,87,255,.18)
 }
 
-#connectBtn{
-width:105px;
-height:105px;
-font-size:38px;
+.welcome h1{font-size:32px;margin-bottom:10px}
+
+.welcome p{
+    color:#8d97aa;max-width:560px;line-height:1.6
 }
 
-.stats{
-grid-template-columns:1fr 1fr;
-gap:12px;
+.message{
+    display:flex;gap:12px;margin-bottom:25px;
+    animation:showMessage .2s ease
 }
 
-.card{
-padding:15px;
+@keyframes showMessage{
+    from{opacity:0;transform:translateY(5px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-.section{
-padding:16px;
+.message.user{justify-content:flex-end}
+
+.avatar{
+    width:36px;height:36px;min-width:36px;
+    border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:12px;font-weight:bold
 }
 
-.bottom-nav{
-height:70px;
+.ai-avatar{color:#fff}
+.user-avatar{background:#27324a}
+
+.message-content{
+    max-width:75%;line-height:1.65;
+    white-space:pre-wrap;word-break:break-word
 }
 
-.nav-item i{
-font-size:20px;
+.user .message-content{
+    background:#1b2741;padding:11px 15px;
+    border-radius:15px 15px 4px 15px
 }
 
+.ai .message-content{padding-top:5px}
+
+.message-content a{
+    color:#8e7cff;text-decoration:underline
 }
 
-/*=========================
-  FIN
-==========================*/
+.typing{display:flex;gap:5px;padding:9px 0}
+
+.typing span{
+    width:7px;height:7px;border-radius:50%;
+    background:#8792a7;animation:bounce 1s infinite
+}
+
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+
+@keyframes bounce{
+    0%,60%,100%{transform:translateY(0)}
+    30%{transform:translateY(-5px)}
+}
+
+.input-area{
+    position:absolute;left:270px;right:0;bottom:0;
+    padding:10px 18px 18px;
+    background:linear-gradient(transparent,#0b1020 25%);
+    z-index:50
+}
+
+.input-container{max-width:850px;margin:auto}
+
+.input-box{
+    display:flex;align-items:flex-end;gap:7px;padding:7px;
+    background:#11182a;border:1px solid #303a50;
+    border-radius:16px
+}
+
+.input-box:focus-within{
+    border-color:#7057ff;
+    box-shadow:0 0 0 2px rgba(112,87,255,.08)
+}
+
+textarea{
+    flex:1;min-height:43px;max-height:150px;resize:none;
+    border:0;outline:0;background:transparent;color:#fff;
+    font-family:Arial,Helvetica,sans-serif;font-size:15px;
+    padding:12px 10px;overflow-y:auto
+}
+
+textarea::placeholder{color:#727d91}
+
+.input-button{
+    width:42px;height:42px;border:0;border-radius:10px;
+    background:transparent;color:#9ba5b8;cursor:pointer;
+    font-size:18px;flex-shrink:0
+}
+
+.input-button:hover{background:#202b43;color:#fff}
+
+.send-button{background:#7057ff;color:#fff}
+.send-button:hover{background:#5d46e6}
+
+.file-input{display:none}
+
+.disclaimer{
+    text-align:center;color:#626d82;font-size:10px;margin-top:7px
+}
+
+.sidebar-overlay{
+    display:none;position:fixed;inset:0;
+    background:rgba(0,0,0,.55);z-index:150
+}
+
+.sidebar-overlay.show{display:block}
+
+@media(max-width:800px){
+    .sidebar{
+        position:fixed;left:-280px;top:0;bottom:0;
+        z-index:200;transition:left .25s ease;
+        box-shadow:10px 0 35px rgba(0,0,0,.3)
+    }
+
+    .sidebar.open{left:0}
+
+    .mobile-menu{
+        display:flex;align-items:center;justify-content:center
+    }
+
+    .input-area{
+        left:0;padding:8px 8px 12px
+    }
+
+    .header{padding:0 12px}
+
+    .message-content{max-width:85%}
+
+    .welcome{min-height:55vh}
+
+    .welcome h1{font-size:27px}
+
+    .welcome p{font-size:14px}
+}
+
+@media(max-width:420px){
+    .input-box{gap:4px;padding:5px;border-radius:14px}
+
+    .input-button{
+        width:38px;height:38px;font-size:16px
+    }
+
+    textarea{
+        font-size:14px;padding:10px 7px
+    }
+
+    .message{gap:8px}
+
+    .avatar{
+        width:32px;height:32px;min-width:32px
+    }
+}
 </style>
 </head>
 
 <body>
 
-<div class="background"></div>
+<div class="app">
 
-<!-- HEADER -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-<header class="header">
+<aside class="sidebar" id="sidebar">
 
-<div class="logo">
+    <div class="logo">
+        <div class="logo-icon">N</div>
+        <div class="logo-text">NEXA AI</div>
+    </div>
 
-<img src="https://i.ibb.co/F4fTpSRX/file-000000000fd071f5a29e53c231d696f1.png" alt="Davbot Tunnel">
+    <button class="new-chat" onclick="newChat()">
+        ＋ Nouveau chat
+    </button>
 
-<div>
+    <div class="history-title">
+        Conversations
+    </div>
 
-<h2>Davbot Tunnel</h2>
+    <div class="history" id="history"></div>
 
-<span>Version Premium</span>
+    <div class="account">
+        <div class="account-avatar">👤</div>
+
+        <div>
+            <div class="account-name">Utilisateur</div>
+            <div class="account-status">Compte gratuit</div>
+        </div>
+    </div>
+
+</aside>
+
+<main class="main">
+
+    <header class="header">
+
+        <div class="header-left">
+
+            <button
+                class="mobile-menu"
+                id="mobileMenu"
+                onclick="toggleSidebar()"
+                aria-label="Ouvrir le menu">
+                ☰
+            </button>
+
+            <div class="ai-name">
+                <span class="online"></span>
+                NEXA AI
+            </div>
+
+        </div>
+
+    </header>
+
+    <section class="chat" id="chat">
+
+        <div class="chat-container" id="chatContainer">
+
+            <div class="welcome" id="welcome">
+
+                <div class="welcome-icon">N</div>
+
+                <h1>Bonjour 👋</h1>
+
+                <p>
+                    Je suis NEXA AI.
+                    Comment puis-je vous aider aujourd'hui ?
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<div class="input-area">
+
+    <div class="input-container">
+
+        <div class="input-box">
+
+            <input
+                type="file"
+                id="fileInput"
+                class="file-input"
+                onchange="fileSelected(this)">
+
+            <button
+                class="input-button"
+                onclick="document.getElementById('fileInput').click()"
+                title="Ajouter un fichier">
+                📎
+            </button>
+
+            <textarea
+                id="messageInput"
+                placeholder="Message à NEXA AI..."
+                rows="1"
+                onkeydown="handleKey(event)"
+                oninput="resizeInput(this)">
+            </textarea>
+
+            <button
+                class="input-button"
+                title="Microphone"
+                onclick="voiceInput()">
+                🎙️
+            </button>
+
+            <button
+                class="input-button send-button"
+                title="Envoyer"
+                onclick="sendMessage()">
+                ➤
+            </button>
+
+        </div>
+
+        <div class="disclaimer">
+            NEXA AI peut faire des erreurs.
+            Vérifiez les informations importantes.
+        </div>
+
+    </div>
 
 </div>
 
 </div>
-
-<div class="header-icons">
-
-<i class="fas fa-bell"></i>
-
-<i class="fas fa-user-circle"></i>
-
-</div>
-
-</header>
-
-<!-- CARTE PRINCIPALE -->
-
-<div class="main-card">
-
-<p class="small-title">
-
-État de la connexion
-
-</p>
-
-<h1 id="status">
-
-Déconnecté
-
-</h1>
-
-<div class="timer">
-
-<i class="fa-regular fa-clock"></i>
-
-<span id="timer">
-
-00:00:00
-
-</span>
-
-</div>
-
-<button id="connectBtn">
-
-<i class="fas fa-power-off"></i>
-
-</button>
-
-<p class="tap">
-
-Appuyez pour vous connecter
-
-</p>
-
-</div>
-
-<!-- STATISTIQUES -->
-
-<div class="stats">
-
-<div class="card">
-
-<i class="fas fa-signal"></i>
-
-<h3 id="ping">
-
-0 ms
-
-</h3>
-
-<span>Ping</span>
-
-</div>
-
-<div class="card">
-
-<i class="fas fa-globe"></i>
-
-<h3 id="ip">
-
-0.0.0.0
-
-</h3>
-
-<span>Adresse IP</span>
-
-</div>
-
-<div class="card">
-
-<i class="fas fa-download"></i>
-
-<h3 id="download">
-
-0 KB/s
-
-</h3>
-
-<span>Download</span>
-
-</div>
-
-<div class="card">
-
-<i class="fas fa-upload"></i>
-
-<h3 id="upload">
-
-0 KB/s
-
-</h3>
-
-<span>Upload</span>
-
-</div>
-
-</div>
-
-<!-- SERVEUR -->
-
-<div class="section">
-
-<h3>
-
-<i class="fas fa-server"></i>
-
-Serveur
-
-</h3>
-
-<select id="server">
-
-<option>🇺🇸 USA</option>
-
-<option>⚡ Davbot V2Ray</option>
-
-<option>👑 Davbot Premium</option>
-
-<option>🇫🇷 France 2</option>
-
-</select>
-
-</div>
-
-<!-- TWEAK -->
-
-<div class="section">
-
-<h3>
-
-<i class="fas fa-bolt"></i>
-
-Tweaks
-
-</h3>
-
-<select id="tweak">
-
-<option>Orange RDC</option>
-
-<option>Orange RDC 2</option>
-
-<option>Orange V2Ray</option>
-
-<option>Orange Premium</option>
-
-<option>Airtel RDC</option>
-
-<option>Airtel V2Ray</option>
-
-<option>Airtel Premium</option>
-
-<option>Vodacom DNS</option>
-
-<option>Vodacom V2Ray</option>
-
-<option>Vodacom Premium</option>
-
-<option>Africell</option>
-
-<option>Africell V2Ray</option>
-
-<option>DNS Google</option>
-
-<option>DNS Cloudflare</option>
-
-<option>HTTP Custom</option>
-
-<option>WebSocket</option>
-
-<option>SSH Premium</option>
-
-<option>SSL/TLS</option>
-
-<option>UDP Gaming</option>
-
-<option>Gaming Fast</option>
-
-<option>Streaming HD</option>
-
-</select>
-
-</div>
-<!-- LOGS -->
-
-<div class="section">
-
-<h3>
-
-<i class="fas fa-file-lines"></i>
-
-Journal de connexion
-
-</h3>
-
-<div id="logBox">
-
-<p>Davbot Tunnel est prêt.</p>
-
-</div>
-
-</div>
-
-<!-- INFORMATIONS -->
-
-<div class="section">
-
-<h3>
-
-<i class="fas fa-circle-info"></i>
-
-Informations
-
-</h3>
-
-<div class="info-card">
-
-<div class="info-row">
-
-<span>État</span>
-
-<b id="connectionState">Déconnecté</b>
-
-</div>
-
-<div class="info-row">
-
-<span>Serveur</span>
-
-<b id="currentServer">USA</b>
-
-</div>
-
-<div class="info-row">
-
-<span>Tweak</span>
-
-<b id="currentTweak">Orange RDC</b>
-
-</div>
-
-<div class="info-row">
-
-<span>Protocole</span>
-
-<b>V2Ray</b>
-
-</div>
-
-<div class="info-row">
-
-<span>Sécurité</span>
-
-<b>TLS + WebSocket</b>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ACTIONS -->
-
-<div class="actions">
-
-<button id="refreshBtn">
-
-<i class="fas fa-rotate"></i>
-
-Actualiser
-
-</button>
-
-<button id="shareBtn">
-
-<i class="fas fa-share-nodes"></i>
-
-Partager
-
-</button>
-
-</div>
-
-<!-- NAVIGATION -->
-
-<nav class="bottom-nav">
-
-<div class="nav-item active">
-
-<i class="fas fa-house"></i>
-
-<span>Accueil</span>
-
-</div>
-
-<div class="nav-item">
-
-<i class="fas fa-server"></i>
-
-<span>Serveurs</span>
-
-</div>
-
-<div class="nav-item">
-
-<i class="fas fa-bolt"></i>
-
-<span>Tweaks</span>
-
-</div>
-
-<div class="nav-item">
-
-<i class="fas fa-crown"></i>
-
-<span>Premium</span>
-
-</div>
-
-<div class="nav-item">
-
-<i class="fas fa-gear"></i>
-
-<span>Réglages</span>
-
-</div>
-
-</nav>
 
 <script>
-    // =======================================
-// DAVBOT TUNNEL v1.0
-// Partie 1
-// =======================================
-
-const connectBtn = document.getElementById("connectBtn");
-const status = document.getElementById("status");
-const timer = document.getElementById("timer");
-const ping = document.getElementById("ping");
-const upload = document.getElementById("upload");
-const download = document.getElementById("download");
-const ip = document.getElementById("ip");
-
-const server = document.getElementById("server");
-const tweak = document.getElementById("tweak");
-
-const logBox = document.getElementById("logBox");
-
-const currentServer = document.getElementById("currentServer");
-const currentTweak = document.getElementById("currentTweak");
-const connectionState = document.getElementById("connectionState");
-
-let connected = false;
-let seconds = 0;
-let timerLoop = null;
-let statsLoop = null;
-
-// =========================
-// LocalStorage
-// =========================
-
-server.value = localStorage.getItem("server") || "🇺🇸 USA";
-tweak.value = localStorage.getItem("tweak") || "Orange RDC";
-
-currentServer.textContent = server.value;
-currentTweak.textContent = tweak.value;
-
-server.addEventListener("change", () => {
-
-localStorage.setItem("server", server.value);
-
-currentServer.textContent = server.value;
-
-});
-
-tweak.addEventListener("change", () => {
-
-localStorage.setItem("tweak", tweak.value);
-
-currentTweak.textContent = tweak.value;
-
-});
-
-// =========================
-// Journal
-// =========================
-
-function log(text){
-
-const heure=new Date().toLocaleTimeString();
-
-logBox.innerHTML=
-
-"<p>["+heure+"] "+text+"</p>"+logBox.innerHTML;
-
-}
-
-// =========================
-// Nombre aléatoire
-// =========================
-
-function random(min,max){
-
-return Math.floor(Math.random()*(max-min+1))+min;
-
-}
-
-// =========================
-// Restaurer la session
-// =========================
-
-window.onload=function(){
-
-if(localStorage.getItem("connected")=="true"){
-
-connected=true;
-
-status.innerHTML="Connecté";
-
-status.classList.add("online");
-
-connectBtn.classList.add("connected");
-
-connectionState.innerHTML="Connecté";
-
-const startTime=
-
-Number(localStorage.getItem("startTime"));
-
-seconds=Math.floor(
-
-(Date.now()-startTime)/1000
-
-);
-
-startConnection();
-
-log("Session restaurée.");
-
-}else{
-
-log("Davbot Tunnel prêt.");
-
-}
-
-};
-// =========================
-// CONNEXION
-// =========================
-
-function startConnection(){
-
-clearInterval(timerLoop);
-clearInterval(statsLoop);
-
-// Timer
-timerLoop = setInterval(() => {
-
-seconds++;
-
-let h = String(Math.floor(seconds / 3600)).padStart(2,"0");
-let m = String(Math.floor((seconds % 3600) / 60)).padStart(2,"0");
-let s = String(seconds % 60).padStart(2,"0");
-
-timer.textContent = `${h}:${m}:${s}`;
-
-},1000);
-
-// Statistiques
-statsLoop = setInterval(() => {
-
-ping.textContent = random(20,80)+" ms";
-
-download.textContent =
-(random(500,9000)/100).toFixed(2)+" MB/s";
-
-upload.textContent =
-(random(200,5000)/100).toFixed(2)+" MB/s";
-
-ip.textContent =
-"10."+random(1,255)+"."+random(1,255)+"."+random(1,255);
-
-},1000);
-
-}
-
-// =========================
-// BOUTON CONNECT
-// =========================
-
-connectBtn.addEventListener("click",()=>{
-
-if(!connected){
-
-connected=true;
-
-status.innerHTML="Connecté";
-
-status.classList.remove("offline");
-status.classList.add("online");
-
-connectionState.innerHTML="Connecté";
-
-connectBtn.classList.remove("disconnected");
-connectBtn.classList.add("connected");
-
-localStorage.setItem("connected","true");
-localStorage.setItem("startTime",Date.now());
-
-log("Connexion au serveur : "+server.value);
-
-startConnection();
-
-}else{
-
-connected=false;
-
-status.innerHTML="Déconnecté";
-
-status.classList.remove("online");
-status.classList.add("offline");
-
-connectionState.innerHTML="Déconnecté";
-
-connectBtn.classList.remove("connected");
-connectBtn.classList.add("disconnected");
-
-clearInterval(timerLoop);
-clearInterval(statsLoop);
-
-seconds=0;
-
-timer.innerHTML="00:00:00";
-
-ping.innerHTML="0 ms";
-download.innerHTML="0 MB/s";
-upload.innerHTML="0 MB/s";
-ip.innerHTML="0.0.0.0";
-
-localStorage.removeItem("connected");
-localStorage.removeItem("startTime");
-
-log("Déconnexion effectuée.");
-
-}
-
-});
-// =========================
-// DAVBOT TUNNEL
-// Partie 3
-// =========================
-
-// Changement de serveur
-server.addEventListener("change", () => {
-
-currentServer.textContent = server.value;
-
-localStorage.setItem("server", server.value);
-
-log("Serveur sélectionné : " + server.value);
-
-});
-
-// Changement de tweak
-tweak.addEventListener("change", () => {
-
-currentTweak.textContent = tweak.value;
-
-localStorage.setItem("tweak", tweak.value);
-
-log("Tweak sélectionné : " + tweak.value);
-
-});
-
-// =========================
-// Actualiser
-// =========================
-
-const refreshBtn = document.getElementById("refreshBtn");
-
-if(refreshBtn){
-
-refreshBtn.addEventListener("click",()=>{
-
-if(connected){
-
-ping.textContent = random(18,70) + " ms";
-
-download.textContent =
-(random(800,9500)/100).toFixed(2)+" MB/s";
-
-upload.textContent =
-(random(400,6000)/100).toFixed(2)+" MB/s";
-
-log("Statistiques actualisées.");
-
-}else{
-
-log("Connexion requise.");
-
-}
-
-});
-
-}
-
-// =========================
-// Partager
-// =========================
-
-const shareBtn = document.getElementById("shareBtn");
-
-if(shareBtn){
-
-shareBtn.addEventListener("click",()=>{
-
-const text =
-"Je suis connecté avec Davbot Tunnel 🚀";
-
-if(navigator.share){
-
-navigator.share({
-
-title:"Davbot Tunnel",
-
-text:text
-
-});
-
-}else{
-
-navigator.clipboard.writeText(text);
-
-alert("Message copié.");
-
-}
-
-log("Partage effectué.");
-
-});
-
-}
-
-// =========================
-// Vérification réseau
-// =========================
-
-window.addEventListener("online",()=>{
-
-log("Connexion Internet disponible.");
-
-});
-
-window.addEventListener("offline",()=>{
-
-log("Connexion Internet perdue.");
-
-});
-
-// =========================
-// Heure
-// =========================
-
-setInterval(()=>{
-
-document.title = connected
-? "🟢 Davbot Tunnel"
-: "🔴 Davbot Tunnel";
-
-},1000);
-
-// =========================
-// Sauvegarde automatique
-// =========================
-
-setInterval(()=>{
-
-localStorage.setItem("server",server.value);
-
-localStorage.setItem("tweak",tweak.value);
-
-if(connected){
-
-localStorage.setItem("seconds",seconds);
-
-}
-
-},5000);
-
-// =========================
-// Chargement des secondes
-// =========================
-
-const saveSeconds = localStorage.getItem("seconds");
-
-if(saveSeconds){
-
-seconds = Number(saveSeconds);
-
-}
-// =========================
-// DAVBOT TUNNEL
-// Partie 4 (Final)
-// =========================
-
-// Toast
-function toast(message){
-
-const old=document.getElementById("toast");
-
-if(old) old.remove();
-
-const div=document.createElement("div");
-
-div.id="toast";
-
-div.innerHTML=message;
-
-document.body.appendChild(div);
-
-setTimeout(()=>{
-
-div.classList.add("show");
-
-},50);
-
-setTimeout(()=>{
-
-div.classList.remove("show");
-
-setTimeout(()=>{
-
-div.remove();
-
-},300);
-
-},2500);
-
-}
-
-// =========================
-// Historique
-// =========================
-
-function saveHistory(action){
-
-let history=
-
-JSON.parse(localStorage.getItem("history")||"[]");
-
-history.unshift({
-
-action:action,
-
-server:server.value,
-
-tweak:tweak.value,
-
-date:new Date().toLocaleString()
-
-});
-
-if(history.length>50){
-
-history.pop();
-
-}
-
-localStorage.setItem(
-
-"history",
-
-JSON.stringify(history)
-
-);
-
-}
-
-// =========================
-// Anti double clic
-// =========================
-
-let lock=false;
-
-connectBtn.addEventListener("click",()=>{
-
-if(lock) return;
-
-lock=true;
-
-setTimeout(()=>{
-
-lock=false;
-
-},1200);
-
-});
-
-// =========================
-// Notification connexion
-// =========================
-
-function notify(text){
-
-if("Notification" in window){
-
-if(Notification.permission==="granted"){
-
-new Notification(text);
-
-}else{
-
-Notification.requestPermission();
-
-}
-
-}
-
-}
-
-// =========================
-// Économie mémoire
-// =========================
-
-window.addEventListener("beforeunload",()=>{
-
-localStorage.setItem("seconds",seconds);
-
-});
-
-// =========================
-// Reconnexion automatique
-// =========================
-
-window.addEventListener("focus",()=>{
-
-if(localStorage.getItem("connected")=="true"){
-
-toast("Connexion restaurée");
-
-}
-
-});
-
-// =========================
-// Bouton connexion
-// =========================
-
-connectBtn.addEventListener("click",()=>{
-
-if(connected){
-
-toast("VPN connecté");
-
-notify("Davbot Tunnel connecté");
-
-saveHistory("Connexion");
-
-}else{
-
-toast("VPN déconnecté");
-
-notify("Davbot Tunnel déconnecté");
-
-saveHistory("Déconnexion");
-
-}
-
-});
-
-// =========================
-// Style du Toast
-// =========================
-
-const style=document.createElement("style");
-
-style.innerHTML=`
-
-#toast{
-
-position:fixed;
-
-left:50%;
-
-bottom:90px;
-
-transform:translateX(-50%);
-
-background:#0e223f;
-
-color:#fff;
-
-padding:14px 22px;
-
-border-radius:15px;
-
-font-size:14px;
-
-opacity:0;
-
-transition:.3s;
-
-z-index:99999;
-
-box-shadow:0 10px 25px rgba(0,0,0,.35);
-
-}
-
-#toast.show{
-
-opacity:1;
-
-bottom:105px;
-
-}
-
+"use strict";
+
+/* ============================================================
+   CONFIGURATION
+============================================================ */
+
+const NEXA_API =
+    "https://davbot-api-xw6y.vercel.app/api/ask";
+
+const SYSTEM_PROMPT = `
+Tu es NEXA AI.
+
+Tu es un assistant intelligent, professionnel,
+respectueux et utile.
+
+Tu aides les utilisateurs dans :
+
+- Programmation
+- Développement web
+- Développement mobile
+- Intelligence artificielle
+- Création de projets
+- Études
+- Rédaction
+- Traduction
+- Résumé
+- Analyse
+- Explication
+- Idées
+- Documents
+- Technologie
+
+Réponds toujours en français sauf si
+l'utilisateur demande une autre langue.
+
+Tes réponses doivent être claires,
+utiles, naturelles et professionnelles.
+
+Ne prétends pas avoir accès à des informations
+que tu ne possèdes pas.
 `;
 
-document.head.appendChild(style);
 
-// =========================
-// Démarrage
-// =========================
+/* ============================================================
+   STOCKAGE
+============================================================ */
 
-toast("Bienvenue sur Davbot Tunnel");
+const STORAGE = {
+    conversations: "nexa_history"
+};
 
-log("Application démarrée.");
+let currentMessages = [];
 
-console.log("Davbot Tunnel chargé.");
+let conversations =
+    loadJSON(
+        STORAGE.conversations,
+        []
+    );
+
+let currentConversationId = null;
+
+let notificationTimer = null;
+
+
+/* ============================================================
+   LOCAL STORAGE
+============================================================ */
+
+function loadJSON(key, fallback){
+
+    try{
+
+        const value =
+            localStorage.getItem(key);
+
+        if(!value){
+
+            return fallback;
+
+        }
+
+        return JSON.parse(value);
+
+    }catch(error){
+
+        console.error(
+            "Erreur localStorage :",
+            error
+        );
+
+        return fallback;
+
+    }
+
+}
+
+
+function saveJSON(key, value){
+
+    try{
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(value)
+        );
+
+        return true;
+
+    }catch(error){
+
+        console.error(
+            "Impossible d'enregistrer :",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* ============================================================
+   INITIALISATION
+============================================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        initializeChat();
+
+    }
+);
+
+
+function initializeChat(){
+
+    loadHistory();
+
+    const input =
+        document.getElementById(
+            "messageInput"
+        );
+
+    if(input){
+
+        resizeInput(input);
+
+        input.focus();
+
+    }
+
+}
+
+
+/* ============================================================
+   ENVOYER MESSAGE
+============================================================ */
+
+async function sendMessage(){
+
+    const input =
+        document.getElementById(
+            "messageInput"
+        );
+
+    if(!input){
+
+        return;
+
+    }
+
+    const text =
+        input.value.trim();
+
+    if(!text){
+
+        return;
+
+    }
+
+    input.value = "";
+
+    resizeInput(input);
+
+    hideWelcome();
+
+    addMessage(
+        "user",
+        text
+    );
+
+    currentMessages.push({
+
+        role: "user",
+
+        content: text
+
+    });
+
+    showTyping();
+
+    await askNexa();
+
+}
+
+
+/* ============================================================
+   API NEXA AI
+============================================================ */
+
+async function askNexa(){
+
+    try{
+
+        const response =
+            await fetch(
+                NEXA_API,
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        message:
+                            SYSTEM_PROMPT +
+                            "\n\nHistorique de la conversation :\n" +
+                            JSON.stringify(currentMessages) +
+                            "\n\nRéponds au dernier message de l'utilisateur."
+
+                    })
+
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Erreur HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        removeTyping();
+
+
+        const answer =
+
+            data.answer ??
+
+            data.message ??
+
+            data.response ??
+
+            data.text ??
+
+            data.result ??
+
+            "Je n'ai pas reçu de réponse.";
+
+
+        const finalAnswer =
+            String(answer);
+
+
+        addMessage(
+            "ai",
+            finalAnswer
+        );
+
+
+        currentMessages.push({
+
+            role: "assistant",
+
+            content:
+                finalAnswer
+
+        });
+
+
+        saveConversation();
+
+
+    }catch(error){
+
+        console.error(
+            "NEXA API ERROR:",
+            error
+        );
+
+
+        removeTyping();
+
+
+        addMessage(
+            "ai",
+            "❌ Impossible de contacter NEXA AI pour le moment. Vérifiez votre connexion Internet puis réessayez."
+        );
+
+    }
+
+}
+
+
+/* ============================================================
+   AJOUT MESSAGE
+============================================================ */
+
+function addMessage(type, text){
+
+    const box =
+        document.getElementById(
+            "chatContainer"
+        );
+
+    if(!box){
+
+        return;
+
+    }
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.className =
+        "message " +
+        type;
+
+
+    const avatar =
+        document.createElement(
+            "div"
+        );
+
+
+    avatar.className =
+        "avatar " +
+        (
+            type === "ai"
+                ? "ai-avatar"
+                : "user-avatar"
+        );
+
+
+    avatar.textContent =
+        type === "ai"
+            ? "N"
+            : "👤";
+
+
+    const content =
+        document.createElement(
+            "div"
+        );
+
+
+    content.className =
+        "message-content";
+
+
+    content.innerHTML =
+        formatText(text);
+
+
+    if(type === "ai"){
+
+        div.appendChild(
+            avatar
+        );
+
+        div.appendChild(
+            content
+        );
+
+    }else{
+
+        div.appendChild(
+            content
+        );
+
+        div.appendChild(
+            avatar
+        );
+
+    }
+
+
+    box.appendChild(
+        div
+    );
+
+
+    scrollChat();
+
+}
+
+
+/* ============================================================
+   FORMATAGE TEXTE
+============================================================ */
+
+function formatText(text){
+
+    let safe =
+        String(text ?? "");
+
+
+    safe =
+        safe
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+
+    safe =
+        safe.replace(
+            /(https?:\/\/[^\s<]+)/g,
+            '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
+        );
+
+
+    return safe.replace(
+        /\n/g,
+        "<br>"
+    );
+
+}
+
+
+/* ============================================================
+   BIENVENUE
+============================================================ */
+
+function hideWelcome(){
+
+    const welcome =
+        document.getElementById(
+            "welcome"
+        );
+
+    if(welcome){
+
+        welcome.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* ============================================================
+   SCROLL
+============================================================ */
+
+function scrollChat(){
+
+    const chat =
+        document.getElementById(
+            "chat"
+        );
+
+    if(!chat){
+
+        return;
+
+    }
+
+
+    requestAnimationFrame(
+        function(){
+
+            chat.scrollTop =
+                chat.scrollHeight;
+
+        }
+    );
+
+}
+
+
+/* ============================================================
+   TYPING
+============================================================ */
+
+function showTyping(){
+
+    const box =
+        document.getElementById(
+            "chatContainer"
+        );
+
+    if(!box){
+
+        return;
+
+    }
+
+
+    removeTyping();
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.id =
+        "typing";
+
+
+    div.className =
+        "message ai";
+
+
+    const avatar =
+        document.createElement(
+            "div"
+        );
+
+
+    avatar.className =
+        "avatar ai-avatar";
+
+
+    avatar.textContent =
+        "N";
+
+
+    const typing =
+        document.createElement(
+            "div"
+        );
+
+
+    typing.className =
+        "typing";
+
+
+    for(let i = 0; i < 3; i++){
+
+        typing.appendChild(
+            document.createElement(
+                "span"
+            )
+        );
+
+    }
+
+
+    div.appendChild(
+        avatar
+    );
+
+    div.appendChild(
+        typing
+    );
+
+
+    box.appendChild(
+        div
+    );
+
+
+    scrollChat();
+
+}
+
+
+/* ============================================================
+   REMOVE TYPING
+============================================================ */
+
+function removeTyping(){
+
+    const typing =
+        document.getElementById(
+            "typing"
+        );
+
+    if(typing){
+
+        typing.remove();
+
+    }
+
+}
+
+
+/* ============================================================
+   SAUVEGARDER CONVERSATION
+============================================================ */
+
+function saveConversation(){
+
+    if(
+        !currentMessages.length
+    ){
+
+        return;
+
+    }
+
+
+    const firstMessage =
+        currentMessages.find(
+            message =>
+                message.role === "user"
+        );
+
+
+    const title =
+        (
+            firstMessage?.content ||
+            "Nouvelle conversation"
+        ).substring(
+            0,
+            45
+        );
+
+
+    const conversation = {
+
+        id:
+            currentConversationId ||
+            Date.now(),
+
+        title:
+            title ||
+            "Conversation",
+
+        messages:
+            currentMessages,
+
+        date:
+            new Date().toLocaleString(
+                "fr-FR"
+            )
+
+    };
+
+
+    const index =
+        conversations.findIndex(
+            item =>
+                item.id ===
+                conversation.id
+        );
+
+
+    if(index !== -1){
+
+        conversations[index] =
+            conversation;
+
+    }else{
+
+        conversations.unshift(
+            conversation
+        );
+
+    }
+
+
+    currentConversationId =
+        conversation.id;
+
+
+    conversations =
+        conversations.slice(
+            0,
+            30
+        );
+
+
+    saveJSON(
+        STORAGE.conversations,
+        conversations
+    );
+
+
+    loadHistory();
+
+}
+
+
+/* ============================================================
+   CHARGER HISTORIQUE
+============================================================ */
+
+function loadHistory(){
+
+    const history =
+        document.getElementById(
+            "history"
+        );
+
+    if(!history){
+
+        return;
+
+    }
+
+
+    conversations =
+        loadJSON(
+            STORAGE.conversations,
+            []
+        );
+
+
+    history.innerHTML = "";
+
+
+    if(
+        !conversations.length
+    ){
+
+        const empty =
+            document.createElement(
+                "div"
+            );
+
+
+        empty.className =
+            "history-item";
+
+
+        empty.style.color =
+            "#626d82";
+
+
+        empty.textContent =
+            "Aucune conversation";
+
+
+        history.appendChild(
+            empty
+        );
+
+
+        return;
+
+    }
+
+
+    conversations.forEach(
+        function(item){
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "history-item";
+
+
+            div.textContent =
+                "💬 " +
+                (
+                    item.title ||
+                    "Conversation"
+                );
+
+
+            div.title =
+                item.title ||
+                "Conversation";
+
+
+            div.onclick =
+                function(){
+
+                    restoreConversation(
+                        item.id
+                    );
+
+                };
+
+
+            history.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+
+/* ============================================================
+   RESTAURER CONVERSATION
+============================================================ */
+
+function restoreConversation(id){
+
+    const conversation =
+        conversations.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!conversation){
+
+        return;
+
+    }
+
+
+    currentMessages =
+        Array.isArray(
+            conversation.messages
+        )
+            ? conversation.messages
+            : [];
+
+
+    currentConversationId =
+        conversation.id;
+
+
+    const box =
+        document.getElementById(
+            "chatContainer"
+        );
+
+
+    if(!box){
+
+        return;
+
+    }
+
+
+    box.innerHTML = "";
+
+
+    currentMessages.forEach(
+        function(message){
+
+            addMessage(
+
+                message.role === "user"
+                    ? "user"
+                    : "ai",
+
+                message.content
+
+            );
+
+        }
+    );
+
+
+    closeSidebar();
+
+}
+
+
+/* ============================================================
+   NOUVEAU CHAT
+============================================================ */
+
+function newChat(){
+
+    currentMessages = [];
+
+    currentConversationId =
+        null;
+
+
+    removeTyping();
+
+
+    const box =
+        document.getElementById(
+            "chatContainer"
+        );
+
+
+    if(!box){
+
+        return;
+
+    }
+
+
+    box.innerHTML = `
+
+        <div
+            class="welcome"
+            id="welcome">
+
+            <div class="welcome-icon">
+                N
+            </div>
+
+            <h1>
+                Bonjour 👋
+            </h1>
+
+            <p>
+                Je suis NEXA AI.
+                Comment puis-je vous aider aujourd'hui ?
+            </p>
+
+        </div>
+
+    `;
+
+
+    const input =
+        document.getElementById(
+            "messageInput"
+        );
+
+
+    if(input){
+
+        input.value = "";
+
+        resizeInput(input);
+
+        input.focus();
+
+    }
+
+
+    closeSidebar();
+
+}
+
+
+/* ============================================================
+   TOUCHE ENTRÉE
+============================================================ */
+
+function handleKey(event){
+
+    if(
+        event.key === "Enter" &&
+        !event.shiftKey
+    ){
+
+        event.preventDefault();
+
+        sendMessage();
+
+    }
+
+}
+
+
+/* ============================================================
+   REDIMENSIONNER INPUT
+============================================================ */
+
+function resizeInput(element){
+
+    if(!element){
+
+        return;
+
+    }
+
+
+    element.style.height =
+        "auto";
+
+
+    element.style.height =
+        Math.min(
+            element.scrollHeight,
+            150
+        ) +
+        "px";
+
+}
+
+
+/* ============================================================
+   SIDEBAR MOBILE
+============================================================ */
+
+function toggleSidebar(){
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+
+    const overlay =
+        document.getElementById(
+            "sidebarOverlay"
+        );
+
+
+    if(!sidebar){
+
+        return;
+
+    }
+
+
+    const open =
+        sidebar.classList.toggle(
+            "open"
+        );
+
+
+    if(overlay){
+
+        overlay.classList.toggle(
+            "show",
+            open
+        );
+
+    }
+
+}
+
+
+function closeSidebar(){
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+
+    const overlay =
+        document.getElementById(
+            "sidebarOverlay"
+        );
+
+
+    if(sidebar){
+
+        sidebar.classList.remove(
+            "open"
+        );
+
+    }
+
+
+    if(overlay){
+
+        overlay.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape"
+        ){
+
+            closeSidebar();
+
+        }
+
+    }
+);
+
+
+/* ============================================================
+   FICHIER
+============================================================ */
+
+function fileSelected(input){
+
+    if(
+        !input ||
+        !input.files ||
+        !input.files.length
+    ){
+
+        return;
+
+    }
+
+
+    const file =
+        input.files[0];
+
+
+    showNotification(
+        "📎 Fichier sélectionné : " +
+        file.name
+    );
+
+}
+
+
+/* ============================================================
+   MICROPHONE
+============================================================ */
+
+function voiceInput(){
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    if(!SpeechRecognition){
+
+        showNotification(
+            "🎙️ La reconnaissance vocale n'est pas disponible sur ce navigateur."
+        );
+
+        return;
+
+    }
+
+
+    const recognition =
+        new SpeechRecognition();
+
+
+    recognition.lang =
+        "fr-FR";
+
+
+    recognition.continuous =
+        false;
+
+
+    recognition.interimResults =
+        false;
+
+
+    recognition.onstart =
+        function(){
+
+            showNotification(
+                "🎙️ Parlez maintenant..."
+            );
+
+        };
+
+
+    recognition.onresult =
+        function(event){
+
+            const transcript =
+                event.results[0][0].transcript;
+
+
+            const input =
+                document.getElementById(
+                    "messageInput"
+                );
+
+
+            if(input){
+
+                input.value =
+                    transcript;
+
+                resizeInput(input);
+
+                input.focus();
+
+            }
+
+        };
+
+
+    recognition.onerror =
+        function(){
+
+            showNotification(
+                "❌ Impossible d'utiliser le microphone."
+            );
+
+        };
+
+
+    try{
+
+        recognition.start();
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* ============================================================
+   NOTIFICATION
+============================================================ */
+
+function showNotification(text){
+
+    createTemporaryNotification(
+        text
+    );
+
+}
+
+
+function createTemporaryNotification(text){
+
+    const box =
+        document.createElement(
+            "div"
+        );
+
+
+    box.textContent =
+        text;
+
+
+    Object.assign(
+        box.style,
+        {
+
+            position:
+                "fixed",
+
+            left:
+                "50%",
+
+            bottom:
+                "25px",
+
+            transform:
+                "translateX(-50%)",
+
+            background:
+                "#182138",
+
+            color:
+                "#fff",
+
+            border:
+                "1px solid #303a50",
+
+            borderRadius:
+                "10px",
+
+            padding:
+                "13px 18px",
+
+            zIndex:
+                "99999",
+
+            fontSize:
+                "13px",
+
+            maxWidth:
+                "90%",
+
+            textAlign:
+                "center"
+
+        }
+    );
+
+
+    document.body.appendChild(
+        box
+    );
+
+
+    clearTimeout(
+        notificationTimer
+    );
+
+
+    notificationTimer =
+        setTimeout(
+            function(){
+
+                box.remove();
+
+            },
+            3000
+        );
+
+}
+
+
+/* ============================================================
+   EFFACER HISTORIQUE
+============================================================ */
+
+function clearConversationHistory(){
+
+    conversations = [];
+
+    currentMessages = [];
+
+    currentConversationId =
+        null;
+
+
+    localStorage.removeItem(
+        STORAGE.conversations
+    );
+
+
+    loadHistory();
+
+    newChat();
+
+    showNotification(
+        "🗑️ Historique supprimé."
+    );
+
+}
+
+
+/* ============================================================
+   EXPORT NEXA
+============================================================ */
+
+window.NEXA = {
+
+    sendMessage,
+
+    newChat,
+
+    askNexa,
+
+    clearConversationHistory,
+
+    showNotification
+
+};
+
 </script>
 
 </body>
-
 </html>
